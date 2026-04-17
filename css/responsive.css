@@ -14,8 +14,10 @@
   .nav-links.open {
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
     position: fixed;
-    top: 64px; left: 0; right: 0;
+    top: 94px; left: 0; right: 0;
     background: rgba(13,13,26,.97);
     padding: 1.5rem 2rem;
     gap: 1.2rem;
