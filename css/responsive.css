@@ -1,0 +1,42 @@
+/* ── RESPONSIVE ───────────────────────────────────── */
+@media (max-width: 768px) {
+  .hero-pikachu { display: none; }
+
+  .hero-charizard {
+    right: auto;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 60%;
+    opacity: .12;
+  }
+
+  .nav-links { display: none; }
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 64px; left: 0; right: 0;
+    background: rgba(13,13,26,.97);
+    padding: 1.5rem 2rem;
+    gap: 1.2rem;
+    border-bottom: 1px solid rgba(255,215,0,.15);
+    z-index: 99;
+  }
+  .nav-toggle { display: block; }
+
+  .contact-wrapper { grid-template-columns: 1fr; }
+  .empresas-wrapper { grid-template-columns: 1fr; }
+
+  .carousel-btn { width: 36px; height: 36px; font-size: 1.4rem; }
+
+  .machine-photo-wrap { height: 240px; }
+  .gallery-photo-wrap { height: 180px; }
+
+  .map-wrap { height: 300px; }
+}
+
+@media (max-width: 480px) {
+  .section { padding: 4rem 1.25rem; }
+  .products-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+}

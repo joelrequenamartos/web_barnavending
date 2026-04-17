@@ -1,0 +1,106 @@
+/* ── GENERIC SECTION ──────────────────────────────── */
+.section {
+  padding: 6rem 2rem;
+}
+.section-dark {
+  background: var(--dark2);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+.section-header h2 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 800;
+  margin-bottom: .6rem;
+  color: var(--yellow);
+}
+.section-header p {
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+/* ── BANNER COLECCIONES ───────────────────────────── */
+.colecciones-banner {
+  background:
+    radial-gradient(ellipse 70% 80% at 50% 50%, rgba(255,215,0,.06) 0%, transparent 70%),
+    var(--dark2);
+  border-top: 1px solid rgba(255,215,0,.1);
+  border-bottom: 1px solid rgba(255,215,0,.1);
+  padding: 4.5rem 2rem;
+  text-align: center;
+}
+
+.colecciones-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.colecciones-sub {
+  font-size: .8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--yellow);
+  opacity: .7;
+}
+
+.colecciones-title {
+  font-size: clamp(1.8rem, 4.5vw, 3rem);
+  font-weight: 900;
+  line-height: 1.15;
+  background: linear-gradient(135deg, #FFD700 0%, #FF8C00 60%, #FF4444 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.colecciones-desc {
+  font-size: 1.05rem;
+  color: var(--muted);
+  line-height: 1.65;
+  max-width: 600px;
+}
+
+.colecciones-juegos {
+  display: flex;
+  gap: .75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: .25rem;
+}
+
+.juego-chip {
+  padding: .5rem 1.25rem;
+  background: rgba(255,215,0,.08);
+  border: 1px solid rgba(255,215,0,.2);
+  border-radius: 50px;
+  font-size: .95rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.colecciones-idiomas {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: .25rem;
+}
+
+.idioma-badge {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.idioma-sep {
+  color: var(--muted);
+  font-size: 1.2rem;
+}

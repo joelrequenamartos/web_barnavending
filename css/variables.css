@@ -1,0 +1,13 @@
+:root {
+  --yellow:  #FFD700;
+  --yellow2: #FFC107;
+  --red:     #E53935;
+  --blue:    #1565C0;
+  --dark:    #0D0D1A;
+  --dark2:   #12122A;
+  --card-bg: #1A1A35;
+  --text:    #E8E8F0;
+  --muted:   #9090B0;
+  --radius:  14px;
+  --shadow:  0 8px 32px rgba(0,0,0,.45);
+}
