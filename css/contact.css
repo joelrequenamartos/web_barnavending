@@ -74,6 +74,10 @@
 .contact-item p { color: var(--muted); font-size: .9rem; }
 
 /* ── CONTACTO EMPRESAS ────────────────────────────── */
+#empresas {
+  background: #080810;
+}
+
 .empresas-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
