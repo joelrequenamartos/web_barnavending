@@ -23,7 +23,7 @@
 .gallery-photo-wrap {
   height: 230px;
   position: relative;
-  background: var(--dark);
+  background: #fff;
   overflow: hidden;
 }
 
