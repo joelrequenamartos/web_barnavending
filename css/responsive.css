@@ -30,10 +30,6 @@
 
   .machine-photo-wrap { height: 260px; }
 
-  /* en pantallas estrechas la foto se ve entera, sin recorte */
-  .gallery-photo-wrap { height: auto; aspect-ratio: 16 / 10; }
-  .gallery-photo { object-fit: contain; padding: .5rem; }
-
   .map-wrap { height: 320px; }
 }
 
