@@ -1,9 +1,9 @@
 /* ── GALERÍA ÚLTIMAS LLEGADAS ─────────────────────── */
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.25rem;
-  max-width: 1100px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  max-width: 1140px;
   margin: 0 auto;
 }
 
@@ -11,17 +11,17 @@
   background: var(--card-bg);
   border-radius: var(--radius);
   overflow: hidden;
-  border: 1px solid rgba(255,215,0,.08);
-  transition: transform .25s, border-color .25s;
+  border: 1px solid var(--line);
+  transition: transform .3s cubic-bezier(.4,0,.2,1), border-color .3s;
 }
 
 .gallery-item:hover {
   transform: translateY(-4px);
-  border-color: rgba(255,215,0,.25);
+  border-color: var(--accent-line);
 }
 
 .gallery-photo-wrap {
-  height: 220px;
+  height: 230px;
   position: relative;
   background: var(--dark);
   overflow: hidden;
@@ -32,6 +32,11 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform .5s cubic-bezier(.4,0,.2,1);
+}
+
+.gallery-item:hover .gallery-photo {
+  transform: scale(1.04);
 }
 
 .gallery-photo[src=""] { display: none; }
@@ -46,31 +51,36 @@
   gap: .5rem;
   color: var(--muted);
   font-size: .9rem;
-  border: 2px dashed rgba(255,215,0,.15);
+  border: 1px dashed var(--line-strong);
 }
 
 .gallery-photo:not([src=""]) + .gallery-placeholder { display: none; }
 
 .gallery-caption {
-  padding: .85rem 1rem;
+  padding: 1rem 1.2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: .5rem;
+  border-top: 1px solid var(--line);
 }
 
 .gallery-title {
-  font-size: .9rem;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: .92rem;
+  font-weight: 600;
   color: var(--text);
 }
 
 .gallery-tag {
-  font-size: .75rem;
-  font-weight: 700;
-  padding: .2rem .65rem;
-  background: rgba(255,215,0,.1);
-  color: var(--yellow);
-  border-radius: 50px;
+  font-size: .66rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: .28rem .7rem;
+  background: transparent;
+  border: 1px solid var(--accent-line);
+  color: var(--accent);
+  border-radius: var(--radius);
   white-space: nowrap;
 }

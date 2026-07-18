@@ -18,11 +18,16 @@
   <meta property="og:title" content="TCG Barna Vending — Máquinas Vending de Trading Cards en Barcelona" />
   <meta property="og:description" content="Pokémon TCG, One Piece TCG y Dragon Ball SCG disponibles 24 h en nuestras máquinas vending de Barcelona." />
   <meta property="og:locale" content="es_ES" />
+  <meta property="og:site_name" content="TCG Barna Vending" />
+  <meta property="og:image" content="https://tcgbarnavending.com/maquinas/ole-140-lift.png" />
 
   <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="TCG Barna Vending — Máquinas Vending de Trading Cards" />
   <meta name="twitter:description" content="Pokémon TCG, One Piece TCG y Dragon Ball SCG disponibles 24 h en Barcelona." />
+  <meta name="twitter:image" content="https://tcgbarnavending.com/maquinas/ole-140-lift.png" />
+
+  <meta name="theme-color" content="#0A0B16" />
 
   <!-- Schema.org LocalBusiness -->
   <script type="application/ld+json">
@@ -33,11 +38,19 @@
     "description": "Máquinas vending de trading cards (Pokémon TCG, One Piece TCG, Dragon Ball SCG) en Barcelona.",
     "url": "https://tcgbarnavending.com",
     "address": { "@type": "PostalAddress", "addressLocality": "Barcelona", "addressCountry": "ES" },
+    "email": "tcgbarnavending@gmail.com",
+    "image": "https://tcgbarnavending.com/maquinas/ole-140-lift.png",
+    "openingHours": "Mo-Su 00:00-24:00",
     "sameAs": ["https://www.instagram.com/tcgbarnavending"]
   }
   </script>
 
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M10 50 A40 40 0 0 1 90 50Z' fill='%23E53935'/><path d='M10 50 A40 40 0 0 0 90 50Z' fill='%23fff'/><circle cx='50' cy='50' r='40' fill='none' stroke='%23222' stroke-width='5'/><line x1='10' y1='50' x2='90' y2='50' stroke='%23222' stroke-width='5'/><circle cx='50' cy='50' r='13' fill='%23222'/><circle cx='50' cy='50' r='8' fill='%23fff'/></svg>" />
+  <!-- Tipografías -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
   <link rel="stylesheet" href="css/variables.css" />
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/navbar.css" />
@@ -67,7 +80,7 @@
       <li><a href="#maquinas">Máquinas</a></li>
       <li><a href="#ubicaciones">Dónde estamos</a></li>
     </ul>
-    <button class="nav-toggle" id="navToggle">&#9776;</button>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">&#9776;</button>
   </nav>
 
   <!-- TICKER -->
@@ -91,7 +104,7 @@
   <!-- HERO -->
   <section class="hero" id="inicio">
     <div class="hero-content">
-      <h1>Colecciona en cada esquina</h1>
+      <h1>¡Colecciona en cada esquina!</h1>
       <p>Sobres de Pokémon TCG, One Piece TCG y mucho más, disponibles 24 h en nuestras máquinas vending.</p>
       <div class="hero-btns">
         <div class="btn-instagram-wrap">
@@ -107,41 +120,13 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </a>
     </div>
-    <img
-      class="hero-charizard"
-      src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/006.png"
-      alt="Charizard"
-    />
-    <img
-      class="hero-pikachu"
-      src="https://pngimg.com/d/pikachu_PNG29.png"
-      alt="Pikachu"
-    />
-
-    <div class="hero-cards">
-      <!-- fuego -->
-      <div class="floating-card card-1">🔥</div>
-      <div class="floating-card card-2">🔥</div>
-      <div class="floating-card card-3">🔥</div>
-      <div class="floating-card card-4">🔥</div>
-      <!-- cartas / tcg -->
-      <div class="floating-card card-5">🃏</div>
-      <div class="floating-card card-6">🃏</div>
-      <div class="floating-card card-7">🃏</div>
-      <div class="floating-card card-8">🃏</div>
-      <!-- pokémon / energía -->
-      <div class="floating-card card-9">⚡</div>
-      <div class="floating-card card-10">💎</div>
-      <div class="floating-card card-11">⭐</div>
-      <div class="floating-card card-12">✨</div>
-    </div>
   </section>
 
   <!-- BANNER COLECCIONES -->
-  <section class="colecciones-banner section-alt-dark" id="colecciones">
+  <section class="colecciones-banner" id="colecciones">
     <div class="colecciones-inner">
       <p class="colecciones-sub">Disponible en nuestras máquinas</p>
-      <h2 class="colecciones-title">Cartas en Español, Inglés y Japonés</h2>
+      <h2 class="colecciones-title">Cartas en <span class="text-grad">Español, Inglés y Japonés</span></h2>
       <p class="colecciones-desc">Encuentra las últimas expansiones y colecciones de tus juegos favoritos, en los tres idiomas, siempre con stock actualizado.</p>
       <div class="colecciones-juegos">
         <div class="juego-chip">⚡ Pokémon TCG</div>
@@ -229,7 +214,7 @@
 
       <div class="gallery-item">
         <div class="gallery-photo-wrap">
-          <img src="imagenes/image.png" alt="Colección Pokémon 1" class="gallery-photo" />
+          <img src="imagenes/fulgor-negro.png" alt="Sobres de la colección Fulgor Negro de Pokémon TCG" class="gallery-photo" loading="lazy" />
         </div>
         <div class="gallery-caption">
           <span class="gallery-title">Fulgor Negro</span>
@@ -239,7 +224,7 @@
 
       <div class="gallery-item">
         <div class="gallery-photo-wrap">
-          <img src="imagenes/image copy.png" alt="Colección Pokémon 2" class="gallery-photo" />
+          <img src="imagenes/heroes-ascendentes.png" alt="Sobres de la colección Héroes Ascendentes de Pokémon TCG" class="gallery-photo" loading="lazy" />
         </div>
         <div class="gallery-caption">
           <span class="gallery-title">Heroes Ascendentes</span>
@@ -249,7 +234,7 @@
 
       <div class="gallery-item">
         <div class="gallery-photo-wrap">
-          <img src="imagenes/image copy 2.png" alt="Colección Pokémon 3" class="gallery-photo" />
+          <img src="imagenes/mega-evolution.png" alt="Sobres de la colección Mega Evolution de Pokémon TCG" class="gallery-photo" loading="lazy" />
         </div>
         <div class="gallery-caption">
           <span class="gallery-title">Mega Evolution</span>
@@ -259,7 +244,7 @@
 
       <div class="gallery-item">
         <div class="gallery-photo-wrap">
-          <img src="imagenes/image copy 3.png" alt="Colección Pokémon 4" class="gallery-photo" />
+          <img src="imagenes/fuegos-fantasmales.png" alt="Sobres de la colección Fuegos Fantasmales de Pokémon TCG" class="gallery-photo" loading="lazy" />
         </div>
         <div class="gallery-caption">
           <span class="gallery-title">Fuegos Fantasmales</span>
@@ -269,7 +254,7 @@
 
       <div class="gallery-item">
         <div class="gallery-photo-wrap">
-          <img src="imagenes/image copy 4.png" alt="Colección Pokémon 5" class="gallery-photo" />
+          <img src="imagenes/orden-perfecto.png" alt="Sobres de la colección Orden Perfecto de Pokémon TCG" class="gallery-photo" loading="lazy" />
         </div>
         <div class="gallery-caption">
           <span class="gallery-title">Orden Perfecto</span>
@@ -279,7 +264,7 @@
 
       <div class="gallery-item">
         <div class="gallery-photo-wrap">
-          <img src="imagenes/image copy 5.png" alt="Colección Pokémon 6" class="gallery-photo" />
+          <img src="imagenes/caos-creciente.png" alt="Sobres de la colección Caos Creciente de Pokémon TCG" class="gallery-photo" loading="lazy" />
         </div>
         <div class="gallery-caption">
           <span class="gallery-title">Caos Creciente</span>
@@ -306,7 +291,7 @@
           <div class="carousel-slide">
             <div class="machine-card">
               <div class="machine-photo-wrap">
-                <img src="maquinas/Ole 27.png" alt="Ole 27" class="machine-photo" />
+                <img src="maquinas/ole-27.png" alt="Máquina vending Ole 27 de TCG Barna Vending" class="machine-photo" loading="lazy" />
               </div>
               <div class="machine-info">
                 <h3>Ole 27</h3>
@@ -319,7 +304,7 @@
           <div class="carousel-slide">
             <div class="machine-card">
               <div class="machine-photo-wrap">
-                <img src="maquinas/Ole 40.png" alt="Ole 40" class="machine-photo" />
+                <img src="maquinas/ole-40.png" alt="Máquina vending Ole 40 de TCG Barna Vending" class="machine-photo" loading="lazy" />
               </div>
               <div class="machine-info">
                 <h3>Ole 40</h3>
@@ -332,7 +317,7 @@
           <div class="carousel-slide">
             <div class="machine-card">
               <div class="machine-photo-wrap">
-                <img src="maquinas/Ole 50 Lift.png" alt="Ole 50 Lift" class="machine-photo" />
+                <img src="maquinas/ole-50-lift.png" alt="Máquina vending Ole 50 Lift de TCG Barna Vending" class="machine-photo" loading="lazy" />
               </div>
               <div class="machine-info">
                 <h3>Ole 50 Lift</h3>
@@ -345,7 +330,7 @@
           <div class="carousel-slide">
             <div class="machine-card">
               <div class="machine-photo-wrap">
-                <img src="maquinas/Ole 140 Lift.png" alt="Ole 140 Lift" class="machine-photo" />
+                <img src="maquinas/ole-140-lift.png" alt="Máquina vending Ole 140 Lift de TCG Barna Vending" class="machine-photo" loading="lazy" />
               </div>
               <div class="machine-info">
                 <h3>Ole 140 Lift</h3>
@@ -469,7 +454,6 @@
 
   <script src="js/navbar.js" defer></script>
   <script src="js/carousel.js" defer></script>
-  <script src="js/contact.js" defer></script>
   <script src="js/animations.js" defer></script>
 </body>
 </html>

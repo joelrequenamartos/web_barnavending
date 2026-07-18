@@ -1,106 +1,137 @@
 /* ── GENERIC SECTION ──────────────────────────────── */
 .section {
-  padding: 6rem 2rem;
+  padding: 7rem 2rem;
 }
 .section-dark {
   background: var(--dark2);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
 }
 
 .section-header {
   text-align: center;
-  margin-bottom: 3.5rem;
+  margin-bottom: 4rem;
 }
 .section-header h2 {
-  font-size: clamp(1.8rem, 4vw, 2.8rem);
-  font-weight: 800;
-  margin-bottom: .6rem;
-  color: var(--yellow);
+  font-size: clamp(1.9rem, 4vw, 2.9rem);
+  font-weight: 700;
+  letter-spacing: -.03em;
+  margin-bottom: .75rem;
+  color: var(--text);
 }
 .section-header p {
   color: var(--muted);
-  font-size: 1.05rem;
+  font-size: .95rem;
+  letter-spacing: .02em;
+}
+
+/* pequeña regla dorada bajo cada título de sección */
+.section-header h2::after {
+  content: '';
+  display: block;
+  width: 42px;
+  height: 2px;
+  background: var(--accent);
+  margin: 1.1rem auto 0;
 }
 
 /* ── BANNER COLECCIONES ───────────────────────────── */
 .colecciones-banner {
-  background:
-    radial-gradient(ellipse 70% 80% at 50% 50%, rgba(255,215,0,.06) 0%, transparent 70%),
-    var(--dark2);
-  border-top: 1px solid rgba(255,215,0,.1);
-  border-bottom: 1px solid rgba(255,215,0,.1);
-  padding: 4.5rem 2rem;
+  background: var(--dark2);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 5.5rem 2rem;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.colecciones-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 90% at 50% 110%, rgba(217,164,65,.06) 0%, transparent 65%);
+  pointer-events: none;
 }
 
 .colecciones-inner {
+  position: relative;
   max-width: 800px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.25rem;
+  gap: 1.4rem;
 }
 
 .colecciones-sub {
-  font-size: .8rem;
-  font-weight: 700;
+  font-size: .72rem;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  color: var(--yellow);
-  opacity: .7;
+  letter-spacing: .28em;
+  color: var(--accent);
 }
 
 .colecciones-title {
-  font-size: clamp(1.8rem, 4.5vw, 3rem);
-  font-weight: 900;
-  line-height: 1.15;
-  background: linear-gradient(135deg, #FFD700 0%, #FF8C00 60%, #FF4444 100%);
+  font-size: clamp(1.9rem, 4.5vw, 3.1rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -.03em;
+  color: var(--text);
+}
+
+.text-grad {
+  background: linear-gradient(135deg, #FFD700 0%, #FF8C00 50%, #FF4444 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .colecciones-desc {
-  font-size: 1.05rem;
+  font-size: 1rem;
   color: var(--muted);
-  line-height: 1.65;
-  max-width: 600px;
+  line-height: 1.7;
+  max-width: 580px;
 }
 
 .colecciones-juegos {
   display: flex;
-  gap: .75rem;
+  gap: .7rem;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: .25rem;
+  margin-top: .5rem;
 }
 
 .juego-chip {
-  padding: .5rem 1.25rem;
-  background: rgba(255,215,0,.08);
-  border: 1px solid rgba(255,215,0,.2);
-  border-radius: 50px;
-  font-size: .95rem;
-  font-weight: 700;
+  padding: .55rem 1.35rem;
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  font-size: .85rem;
+  font-weight: 500;
+  letter-spacing: .03em;
   color: var(--text);
+  transition: border-color .2s;
 }
+.juego-chip:hover { border-color: var(--accent-line); }
 
 .colecciones-idiomas {
   display: flex;
   align-items: center;
-  gap: .75rem;
+  gap: .9rem;
   flex-wrap: wrap;
   justify-content: center;
   margin-top: .25rem;
 }
 
 .idioma-badge {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--text);
+  font-size: .85rem;
+  font-weight: 500;
+  letter-spacing: .04em;
+  color: var(--muted);
 }
 
 .idioma-sep {
-  color: var(--muted);
-  font-size: 1.2rem;
+  color: var(--accent);
+  font-size: .9rem;
 }

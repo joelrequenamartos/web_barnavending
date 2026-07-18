@@ -5,8 +5,8 @@
   margin: 0 auto;
   border-radius: var(--radius);
   overflow: hidden;
-  border: 1px solid rgba(255,215,0,.12);
-  height: 420px;
+  border: 1px solid var(--line);
+  height: 440px;
 }
 
 .map-frame {
@@ -14,6 +14,7 @@
   height: 100%;
   border: none;
   display: block;
+  filter: grayscale(1) invert(.92) contrast(.9);
 }
 
 .map-frame[src=""] { display: none; }
@@ -27,15 +28,18 @@
   justify-content: center;
   gap: .6rem;
   background: var(--card-bg);
-  border: 2px dashed rgba(255,215,0,.15);
+  border: 1px dashed var(--line-strong);
   border-radius: var(--radius);
   color: var(--muted);
   text-align: center;
   padding: 2rem;
 }
 
-.map-placeholder span { font-size: 2.5rem; }
-.map-placeholder p { font-size: 1rem; font-weight: 600; color: var(--text); }
-.map-placeholder small { font-size: .8rem; max-width: 360px; line-height: 1.5; }
+.map-placeholder span {
+  font-size: 1.8rem;
+  filter: grayscale(1) brightness(1.5);
+}
+.map-placeholder p { font-size: .95rem; font-weight: 600; color: var(--text); }
+.map-placeholder small { font-size: .78rem; max-width: 360px; line-height: 1.5; }
 
 .map-frame:not([src=""]) + .map-placeholder { display: none; }

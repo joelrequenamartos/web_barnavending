@@ -2,7 +2,8 @@ const navToggle = document.getElementById('navToggle');
 const navLinks  = document.querySelector('.nav-links');
 
 navToggle.addEventListener('click', () => {
-  navLinks.classList.toggle('open');
+  const open = navLinks.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', open);
 });
 
 navLinks.querySelectorAll('a').forEach(a => {

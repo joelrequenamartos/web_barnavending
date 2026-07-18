@@ -1,13 +1,29 @@
 :root {
-  --yellow:  #FFD700;
-  --yellow2: #FFC107;
+  /* acento único: dorado desaturado, uso quirúrgico */
+  --accent:      #D9A441;
+  --accent-soft: rgba(217, 164, 65, .12);
+  --accent-line: rgba(217, 164, 65, .35);
+
+  /* compat con nombres antiguos */
+  --yellow:  var(--accent);
+  --yellow2: #C4932F;
   --red:     #E53935;
   --blue:    #1565C0;
-  --dark:    #0D0D1A;
-  --dark2:   #12122A;
-  --card-bg: #1A1A35;
-  --text:    #E8E8F0;
-  --muted:   #9090B0;
-  --radius:  14px;
-  --shadow:  0 8px 32px rgba(0,0,0,.45);
+
+  /* fondos: azul noche profundo con capas sutiles */
+  --dark:    #0A0B16;
+  --dark2:   #0E1020;
+  --card-bg: #151830;
+
+  --text:    #EDEDEF;
+  --muted:   #8A8A93;
+
+  --line:        rgba(140,160,255,.10);
+  --line-strong: rgba(140,160,255,.20);
+
+  --radius:  6px;
+  --shadow:  0 20px 60px rgba(0,0,0,.5);
+
+  --font-display: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  --font-body:    'Inter', 'Segoe UI', system-ui, sans-serif;
 }

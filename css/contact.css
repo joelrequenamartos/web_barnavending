@@ -17,38 +17,37 @@
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: .35rem;
+  gap: .4rem;
 }
 .form-group label {
-  font-size: .85rem;
+  font-size: .72rem;
   font-weight: 600;
   color: var(--muted);
   text-transform: uppercase;
-  letter-spacing: .5px;
+  letter-spacing: .12em;
 }
 
 .contact-form input,
 .contact-form textarea {
   background: var(--card-bg);
-  border: 1px solid rgba(255,215,0,.15);
-  border-radius: 10px;
-  padding: .75rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: .8rem 1rem;
   color: var(--text);
   font-size: .95rem;
   font-family: inherit;
   outline: none;
-  transition: border-color .2s, box-shadow .2s;
+  transition: border-color .2s;
   resize: vertical;
 }
 .contact-form input:focus,
 .contact-form textarea:focus {
-  border-color: rgba(255,215,0,.5);
-  box-shadow: 0 0 0 3px rgba(255,215,0,.1);
+  border-color: var(--accent-line);
 }
 
 .form-success {
   display: none;
-  color: #81C784;
+  color: #7DC98A;
   font-size: .9rem;
   text-align: center;
 }
@@ -67,83 +66,113 @@
   background: var(--card-bg);
   border-radius: var(--radius);
   padding: 1.1rem 1.25rem;
-  border: 1px solid rgba(255,215,0,.08);
+  border: 1px solid var(--line);
 }
-.contact-icon { font-size: 1.5rem; line-height: 1; }
-.contact-item strong { display: block; font-size: .85rem; color: var(--yellow); margin-bottom: .2rem; }
+.contact-icon { font-size: 1.3rem; line-height: 1; filter: grayscale(1) brightness(1.5); }
+.contact-item strong { display: block; font-size: .8rem; color: var(--accent); margin-bottom: .2rem; letter-spacing: .05em; }
 .contact-item p { color: var(--muted); font-size: .9rem; }
 
 /* ── CONTACTO EMPRESAS ────────────────────────────── */
 #empresas {
-  background: #080810;
+  background: var(--dark2);
+  position: relative;
+  overflow: hidden;
+}
+
+#empresas::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 50% 80% at 85% 50%, rgba(217,164,65,.05) 0%, transparent 65%);
+  pointer-events: none;
 }
 
 .empresas-wrapper {
+  position: relative;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  max-width: 900px;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 4rem;
+  max-width: 940px;
   margin: 0 auto;
   align-items: center;
 }
 
 .empresas-text p {
   color: var(--muted);
-  font-size: 1rem;
-  line-height: 1.7;
-  margin-bottom: 1.25rem;
+  font-size: .98rem;
+  line-height: 1.75;
+  margin-bottom: 1.75rem;
 }
 
 .empresas-list {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: .6rem;
+  gap: .85rem;
 }
 
 .empresas-list li {
   font-size: .9rem;
   color: var(--text);
-  padding-left: 1.25rem;
+  padding-left: 1.6rem;
   position: relative;
 }
 
 .empresas-list li::before {
-  content: '✓';
+  content: '';
   position: absolute;
   left: 0;
-  color: var(--yellow);
-  font-weight: 800;
+  top: .5em;
+  width: 14px;
+  height: 1px;
+  background: var(--accent);
 }
 
 .empresas-card {
   background: var(--card-bg);
-  border: 1px solid rgba(255,215,0,.2);
+  border: 1px solid var(--line-strong);
   border-radius: var(--radius);
-  padding: 2.5rem 2rem;
+  padding: 3rem 2.25rem;
   text-align: center;
-  box-shadow: 0 0 40px rgba(255,215,0,.06);
+  position: relative;
+}
+
+.empresas-card::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: 50%;
+  transform: translateX(-50%);
+  width: 60px; height: 2px;
+  background: var(--accent);
 }
 
 .empresas-icon {
-  font-size: 2.5rem;
-  margin-bottom: .75rem;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  filter: grayscale(1) brightness(1.5);
 }
 
 .empresas-label {
   color: var(--muted);
-  font-size: .85rem;
-  margin-bottom: .4rem;
+  font-size: .72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  margin-bottom: .6rem;
 }
 
 .empresas-email {
   display: block;
-  font-size: 1.05rem;
-  font-weight: 800;
-  color: var(--yellow);
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #FFD700 0%, #FF8C00 50%, #FF4444 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   text-decoration: none;
   word-break: break-all;
-  margin-bottom: .75rem;
+  margin-bottom: .9rem;
   transition: opacity .2s;
 }
 

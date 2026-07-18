@@ -4,73 +4,79 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 9.5rem 2rem 4rem;
+  padding: 10rem 2rem 5rem;
   background:
-    radial-gradient(ellipse 80% 60% at 70% 40%, rgba(255,215,0,.07) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 80% at 20% 60%, rgba(21,101,192,.12) 0%, transparent 70%),
+    radial-gradient(ellipse 70% 55% at 80% 20%, rgba(255,110,30,.16) 0%, transparent 60%),
+    radial-gradient(ellipse 90% 55% at 50% -10%, rgba(217,164,65,.06) 0%, transparent 60%),
+    radial-gradient(ellipse 65% 80% at 12% 65%, rgba(40,80,200,.14) 0%, transparent 65%),
     var(--dark);
   position: relative;
   overflow: hidden;
   text-align: center;
 }
 
+/* rejilla técnica sutil de fondo */
 .hero::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FFD700' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 30%, transparent 75%);
   pointer-events: none;
 }
 
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 680px;
+  max-width: 760px;
 }
 
 .hero-content h1 {
-  font-size: clamp(2.4rem, 6vw, 4.5rem);
-  font-weight: 900;
-  line-height: 1.1;
-  margin-bottom: 1.2rem;
-  background: linear-gradient(135deg, #FFD700 0%, #FF8C00 50%, #FF4444 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-size: clamp(2.6rem, 6.5vw, 5rem);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -.035em;
+  margin-bottom: 1.4rem;
+  color: var(--text);
 }
 
 .hero-content p {
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
   color: var(--muted);
-  margin-bottom: 2rem;
-  line-height: 1.6;
+  margin: 0 auto 2.75rem;
+  line-height: 1.7;
+  max-width: 540px;
 }
 
 /* ── BUTTONS ──────────────────────────────────────── */
 .btn-primary {
   display: inline-block;
-  padding: .85rem 2.2rem;
-  background: linear-gradient(135deg, var(--yellow), var(--yellow2));
-  color: #000;
-  font-weight: 800;
-  font-size: 1rem;
-  border-radius: 50px;
+  padding: .9rem 2.4rem;
+  background: var(--text);
+  color: #09090B;
+  font-weight: 600;
+  font-size: .9rem;
+  letter-spacing: .04em;
+  border-radius: var(--radius);
   text-decoration: none;
   border: none;
   cursor: pointer;
-  transition: transform .2s, box-shadow .2s;
-  box-shadow: 0 4px 20px rgba(255,215,0,.35);
+  transition: background .2s, transform .2s;
 }
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(255,215,0,.5);
+  background: var(--accent);
+  transform: translateY(-1px);
 }
 
 .hero-btns {
   display: flex;
   gap: 1rem;
   justify-content: center;
-  align-items: flex-end;
+  align-items: stretch;
   flex-wrap: wrap;
 }
 
@@ -78,126 +84,65 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: .45rem;
+  gap: 0;
 }
 
 .btn-instagram-label {
-  font-size: .78rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: #fcb045;
-  opacity: .9;
+  display: none;
 }
 
 .btn-instagram {
   display: inline-flex;
   align-items: center;
-  gap: .5rem;
-  padding: .85rem 2rem;
+  gap: .55rem;
+  padding: .9rem 2rem;
   background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
   color: #fff;
-  font-weight: 800;
-  font-size: 1rem;
-  border-radius: 50px;
+  font-weight: 600;
+  font-size: .9rem;
+  letter-spacing: .04em;
+  border: none;
+  border-radius: var(--radius);
   text-decoration: none;
   transition: transform .2s, box-shadow .2s;
   box-shadow:
     0 4px 20px rgba(253,29,29,.35),
-    0 0 40px rgba(252,176,69,.25),
-    0 0 80px rgba(252,176,69,.12);
+    0 0 40px rgba(252,176,69,.25);
   animation: igPulse 3s ease-in-out infinite;
 }
 .btn-instagram:hover {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
   box-shadow:
     0 8px 28px rgba(253,29,29,.5),
-    0 0 60px rgba(252,176,69,.4),
-    0 0 100px rgba(252,176,69,.2);
+    0 0 60px rgba(252,176,69,.4);
   animation: none;
 }
 
 @keyframes igPulse {
-  0%, 100% { box-shadow: 0 4px 20px rgba(253,29,29,.35), 0 0 40px rgba(252,176,69,.2),  0 0 80px rgba(252,176,69,.08); }
-  50%       { box-shadow: 0 4px 28px rgba(253,29,29,.5),  0 0 60px rgba(252,176,69,.38), 0 0 110px rgba(252,176,69,.18); }
+  0%, 100% { box-shadow: 0 4px 20px rgba(253,29,29,.35), 0 0 40px rgba(252,176,69,.2); }
+  50%       { box-shadow: 0 4px 28px rgba(253,29,29,.5),  0 0 60px rgba(252,176,69,.38); }
 }
 
-/* ── POKÉMON IMAGES ───────────────────────────────── */
-.hero-charizard,
-.hero-pikachu {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 80%;
-  max-height: 650px;
-  object-fit: contain;
-  pointer-events: none;
-  z-index: 1;
-  -webkit-mask-image: linear-gradient(to top, transparent 0%, black 30%);
-  mask-image: linear-gradient(to top, transparent 0%, black 30%);
-}
-
-.hero-charizard {
-  right: -2%;
-  height: 100%;
-  max-height: 820px;
-  opacity: .18;
-  filter: drop-shadow(0 0 60px rgba(255,100,0,.35));
-}
-
-.hero-pikachu {
-  left: -1%;
-  opacity: .20;
-}
-
-/* ── FLOATING CARDS ───────────────────────────────── */
-.hero-cards { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
-
-.floating-card {
-  position: absolute;
-  animation: floatCard 6s ease-in-out infinite;
-  opacity: .35;
-  user-select: none;
-}
-
-.card-1  { font-size: 2.8rem; top: 18%; left: 6%;   animation-delay: 0s;    animation-duration: 5.5s; }
-.card-2  { font-size: 2rem;   top: 40%; left: 3%;   animation-delay: 1.2s;  animation-duration: 7s;   }
-.card-3  { font-size: 3rem;   top: 65%; left: 8%;   animation-delay: 2.4s;  animation-duration: 6s;   }
-.card-4  { font-size: 1.6rem; top: 80%; left: 18%;  animation-delay: 0.8s;  animation-duration: 5s;   }
-.card-5  { font-size: 2.6rem; top: 14%; right: 6%;  animation-delay: 0.4s;  animation-duration: 6.5s; }
-.card-6  { font-size: 1.8rem; top: 35%; right: 4%;  animation-delay: 1.8s;  animation-duration: 7.5s; }
-.card-7  { font-size: 2.4rem; top: 58%; right: 9%;  animation-delay: 3s;    animation-duration: 5.8s; }
-.card-8  { font-size: 1.4rem; top: 78%; right: 20%; animation-delay: 1s;    animation-duration: 6.2s; }
-.card-9  { font-size: 1.5rem; top: 12%; left: 28%;  animation-delay: 2s;    animation-duration: 8s;   }
-.card-10 { font-size: 1.3rem; top: 88%; left: 42%;  animation-delay: 0.6s;  animation-duration: 5.2s; }
-.card-11 { font-size: 2rem;   top: 25%; right: 28%; animation-delay: 3.5s;  animation-duration: 7s;   }
-.card-12 { font-size: 1.6rem; top: 72%; left: 32%;  animation-delay: 1.5s;  animation-duration: 6.8s; }
-
-@keyframes floatCard {
-  0%, 100% { transform: translateY(0) rotate(-6deg); }
-  50%       { transform: translateY(-20px) rotate(6deg); }
-}
-
-/* ── SCROLL DOWN ARROW ────────────────────────────── */
+/* ── SCROLL DOWN ──────────────────────────────────── */
 .scroll-down {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-top: 2rem;
-  width: 48px; height: 48px;
+  margin-top: 3.5rem;
+  width: 44px; height: 44px;
   border-radius: 50%;
-  border: 2px solid rgba(255,215,0,.3);
-  color: rgba(255,215,0,.6);
+  border: 1px solid var(--line-strong);
+  color: var(--muted);
   text-decoration: none;
-  animation: bounce 2s ease-in-out infinite;
+  animation: bounce 2.4s ease-in-out infinite;
   transition: border-color .2s, color .2s;
 }
 .scroll-down:hover {
-  border-color: var(--yellow);
-  color: var(--yellow);
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 @keyframes bounce {
   0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(8px); }
+  50%       { transform: translateY(6px); }
 }
