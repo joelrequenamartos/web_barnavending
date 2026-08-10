@@ -1,6 +1,6 @@
 (function () {
   // ---- Configuración fácilmente editable ----
-  const PROMO_IMAGE = "imagenes/IMAGE_PLACEHOLDER.jpg";
+  const PROMO_IMAGE = "imagenes/popup.png";
   const PROMO_INSTAGRAM_URL = "https://www.instagram.com/tcgbarnavending";
   const PROMO_TEXT = "Síguenos en Instagram y descubre nuestras novedades, productos y próximos lanzamientos.";
   const PROMO_BUTTON_TEXT = "VER INSTAGRAM";
