@@ -2,13 +2,21 @@
 
 html { scroll-behavior: smooth; }
 
+:root {
+  --gx: 50vw;
+  --gy: 30vh;
+  --glow-o: 0;
+}
+
 body {
   font-family: var(--font-body);
-  background: var(--dark);
   color: var(--text);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   line-height: 1.6;
+  background:
+    radial-gradient(circle 600px at var(--gx) var(--gy), rgba(255,190,70,calc(.16 * var(--glow-o))) 0%, rgba(255,90,60,calc(.09 * var(--glow-o))) 35%, transparent 70%) fixed,
+    var(--dark);
 }
 
 h1, h2, h3, h4 {

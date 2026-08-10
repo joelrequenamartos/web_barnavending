@@ -3,25 +3,37 @@
   padding: 7rem 2rem;
 }
 .section-dark {
-  background: var(--dark2);
+  background:
+    radial-gradient(circle 600px at var(--gx) var(--gy), rgba(255,190,70,calc(.16 * var(--glow-o))) 0%, rgba(255,90,60,calc(.09 * var(--glow-o))) 35%, transparent 70%) fixed,
+    var(--dark2);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
 
 .section-header {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 4.5rem;
+}
+.section-eyebrow {
+  display: inline-block;
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .9rem;
 }
 .section-header h2 {
-  font-size: clamp(1.9rem, 4vw, 2.9rem);
+  font-size: clamp(2.2rem, 5.5vw, 3.6rem);
   font-weight: 700;
-  letter-spacing: -.03em;
-  margin-bottom: .75rem;
+  letter-spacing: -.035em;
+  line-height: 1.05;
+  margin-bottom: .9rem;
   color: var(--text);
 }
 .section-header p {
   color: var(--muted);
-  font-size: .95rem;
+  font-size: .98rem;
   letter-spacing: .02em;
 }
 
@@ -31,13 +43,16 @@
   display: block;
   width: 42px;
   height: 2px;
-  background: var(--accent);
+  background: var(--foil);
   margin: 1.1rem auto 0;
+  border-radius: 2px;
 }
 
 /* ── BANNER COLECCIONES ───────────────────────────── */
 .colecciones-banner {
-  background: var(--dark2);
+  background:
+    radial-gradient(circle 600px at var(--gx) var(--gy), rgba(255,190,70,calc(.16 * var(--glow-o))) 0%, rgba(255,90,60,calc(.09 * var(--glow-o))) 35%, transparent 70%) fixed,
+    var(--dark2);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   padding: 5.5rem 2rem;
@@ -81,7 +96,7 @@
 }
 
 .text-grad {
-  background: linear-gradient(135deg, #FFD700 0%, #FF8C00 50%, #FF4444 100%);
+  background: var(--foil);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -129,7 +144,9 @@
   font-weight: 500;
   letter-spacing: .04em;
   color: var(--muted);
+  transition: color .2s;
 }
+.idioma-badge:hover { color: var(--accent); }
 
 .idioma-sep {
   color: var(--accent);

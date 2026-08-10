@@ -21,7 +21,12 @@
   --line:        rgba(140,160,255,.10);
   --line-strong: rgba(140,160,255,.20);
 
-  --radius:  6px;
+  /* foil: el gradiente holo que usan las cartas premium — firma visual del sitio */
+  --foil: linear-gradient(135deg, #FFD700 0%, #FF8C00 50%, #FF4444 100%);
+
+  /* esquina redondeada tipo carta coleccionable */
+  --radius:    14px;
+  --radius-sm: 8px;
   --shadow:  0 20px 60px rgba(0,0,0,.5);
 
   --font-display: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;

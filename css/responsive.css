@@ -15,11 +15,27 @@
     width: 52px;
     height: 52px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #FFD700 0%, #FF8C00 50%, #FF4444 100%);
+    background: var(--foil);
     color: #1a0e00;
     text-decoration: none;
+    overflow: hidden;
     box-shadow: 0 10px 26px rgba(255, 90, 30, .4);
     transition: transform .2s ease, box-shadow .2s ease;
+  }
+
+  .sticky-cta::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -60%;
+    width: 40%; height: 100%;
+    background: linear-gradient(115deg, transparent, rgba(255,255,255,.65), transparent);
+    transform: skewX(-20deg);
+    animation: stickySweep 3.5s ease-in-out infinite;
+  }
+
+  @keyframes stickySweep {
+    0%, 40%   { left: -60%; }
+    60%, 100% { left: 130%; }
   }
 
   .sticky-cta:active {
@@ -54,6 +70,7 @@
 
   .contact-wrapper { grid-template-columns: 1fr; }
   .empresas-wrapper { grid-template-columns: 1fr; gap: 2.5rem; }
+  .products-grid { grid-template-columns: repeat(2, 1fr); }
 
   .carousel-btn { width: 38px; height: 38px; font-size: 1.3rem; }
 

@@ -74,7 +74,9 @@
 
 /* ── CONTACTO EMPRESAS ────────────────────────────── */
 #empresas {
-  background: var(--dark2);
+  background:
+    radial-gradient(circle 600px at var(--gx) var(--gy), rgba(255,190,70,calc(.16 * var(--glow-o))) 0%, rgba(255,90,60,calc(.09 * var(--glow-o))) 35%, transparent 70%) fixed,
+    var(--dark2);
   position: relative;
   overflow: hidden;
 }
@@ -166,7 +168,7 @@
   font-family: var(--font-display);
   font-size: 1.02rem;
   font-weight: 600;
-  background: linear-gradient(135deg, #FFD700 0%, #FF8C00 50%, #FF4444 100%);
+  background: var(--foil);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

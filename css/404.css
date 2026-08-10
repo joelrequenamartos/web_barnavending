@@ -22,7 +22,7 @@
   font-size: clamp(4.5rem, 14vw, 7rem);
   font-weight: 700;
   line-height: 1;
-  background: linear-gradient(135deg, #FFD700 0%, #FF8C00 50%, #FF4444 100%);
+  background: var(--foil);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -48,7 +48,7 @@
   display: inline-block;
   padding: .9rem 2.4rem;
   border-radius: var(--radius);
-  background: linear-gradient(135deg, #FFD700 0%, #FF8C00 50%, #FF4444 100%);
+  background: var(--foil);
   color: #1a0e00;
   font-family: var(--font-display);
   font-weight: 700;

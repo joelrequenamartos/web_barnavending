@@ -1,7 +1,7 @@
 /* ── PRODUCTS GRID ────────────────────────────────── */
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 1px;
   max-width: 1140px;
   margin: 0 auto;
@@ -24,12 +24,36 @@
   position: absolute;
   top: 0; left: 0;
   width: 100%; height: 2px;
-  background: var(--accent);
+  background: var(--foil);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform .35s cubic-bezier(.4,0,.2,1);
 }
 .product-card:hover::after { transform: scaleX(1); }
+
+/* ── EFECTO HOLO ──────────────────────────────────── */
+.product-card.holo {
+  --rx: 0deg; --ry: 0deg; --mx: 50%; --my: 50%;
+  transform-style: preserve-3d;
+  perspective: 900px;
+  will-change: transform;
+  transition: transform .25s cubic-bezier(.4,0,.2,1), background .25s;
+  transform: rotateX(var(--rx)) rotateY(var(--ry));
+}
+.product-card.holo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,.4), transparent 45%),
+    linear-gradient(115deg, transparent 30%, rgba(255,215,0,.28) 42%, rgba(255,68,68,.22) 50%, rgba(255,140,0,.22) 58%, transparent 70%);
+  background-size: 100% 100%, 250% 250%;
+  background-position: center, var(--mx) var(--my);
+  mix-blend-mode: color-dodge;
+  transition: opacity .25s ease;
+  pointer-events: none;
+}
+.product-card.holo:hover::before { opacity: .5; }
 
 .product-icon {
   font-size: 1.3rem;
@@ -46,7 +70,7 @@
   font-size: 1.15rem;
   font-weight: 600;
   margin-bottom: .6rem;
-  background: linear-gradient(135deg, #FFD700 0%, #FF8C00 50%, #FF4444 100%);
+  background: var(--foil);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

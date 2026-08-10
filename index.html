@@ -45,6 +45,41 @@
   }
   </script>
 
+  <!-- Schema.org FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Dónde están vuestras máquinas?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Tenemos máquinas repartidas por Barcelona y alrededores, en centros deportivos, locales de ocio y otros establecimientos. Puedes ver las ubicaciones exactas en el mapa de la web." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué formas de pago aceptáis?",
+        "acceptedAnswer": { "@type": "Answer", "text": "El pago es solo con tarjeta, contactless o móvil (Apple Pay, Google Pay). No aceptamos efectivo." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Con qué frecuencia reponéis el stock?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Revisamos y reponemos las máquinas de forma periódica para que siempre tengas acceso a las últimas colecciones y novedades disponibles." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Puedo pedir una máquina para mi local?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sí. Instalamos y mantenemos la máquina sin coste para ti. Puedes llamarnos, escribirnos por email o mandarnos un mensaje por Instagram y te damos toda la información." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué colecciones y juegos tenéis disponibles?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Encontrarás sobres de Pokémon TCG, One Piece TCG y Dragon Ball SCG, con las colecciones y ediciones especiales más recientes." }
+      }
+    ]
+  }
+  </script>
+
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M10 50 A40 40 0 0 1 90 50Z' fill='%23E53935'/><path d='M10 50 A40 40 0 0 0 90 50Z' fill='%23fff'/><circle cx='50' cy='50' r='40' fill='none' stroke='%23222' stroke-width='5'/><line x1='10' y1='50' x2='90' y2='50' stroke='%23222' stroke-width='5'/><circle cx='50' cy='50' r='13' fill='%23222'/><circle cx='50' cy='50' r='8' fill='%23fff'/></svg>" />
   <!-- Tipografías -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -65,8 +100,10 @@
   <link rel="stylesheet" href="css/footer.css" />
   <link rel="stylesheet" href="css/responsive.css" />
   <link rel="stylesheet" href="css/promo-modal.css" />
+  <link rel="stylesheet" href="css/faq.css" />
 </head>
 <body>
+
 
   <!-- NAVBAR -->
   <nav class="navbar">
@@ -105,7 +142,8 @@
   <!-- HERO -->
   <section class="hero" id="inicio">
     <div class="hero-content">
-      <h1>¡Colecciona en cada esquina!</h1>
+      <span class="hero-eyebrow">Barcelona · 24&nbsp;horas</span>
+      <h1>Colecciona en <span class="text-grad">cada esquina</span></h1>
       <p>Sobres de Pokémon TCG, One Piece TCG y mucho más, disponibles 24 h en nuestras máquinas vending.</p>
       <div class="hero-btns">
         <div class="btn-instagram-wrap">
@@ -115,7 +153,7 @@
             @tcgbarnavending
           </a>
         </div>
-        <a href="#maquinas" class="btn-primary">Ver máquinas</a>
+        <a href="https://ig.me/m/tcgbarnavending" target="_blank" rel="noopener" class="btn-primary">Habla con nosotros</a>
       </div>
       <a href="#colecciones" class="scroll-down" aria-label="Bajar">
         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
@@ -147,6 +185,7 @@
   <!-- PRODUCTOS -->
   <section class="section" id="productos">
     <div class="section-header">
+      <span class="section-eyebrow">Catálogo</span>
       <h2>Qué encontrarás</h2>
       <p>Trading cards de los mejores juegos del mundo</p>
     </div>
@@ -207,6 +246,7 @@
   <!-- ÚLTIMAS LLEGADAS -->
   <section class="section section-dark" id="llegadas">
     <div class="section-header">
+      <span class="section-eyebrow">Stock actualizado</span>
       <h2>Últimas llegadas</h2>
       <p>Stock recién repuesto en nuestras máquinas</p>
     </div>
@@ -279,6 +319,7 @@
   <!-- CARRUSEL DE MÁQUINAS -->
   <section class="section" id="maquinas">
     <div class="section-header">
+      <span class="section-eyebrow">Red vending</span>
       <h2>Nuestras Máquinas</h2>
       <p>Encuéntranos en centros comerciales, tiendas y eventos</p>
     </div>
@@ -353,6 +394,7 @@
   <!-- MAPA -->
   <section class="section section-dark" id="ubicaciones">
     <div class="section-header">
+      <span class="section-eyebrow">Mapa</span>
       <h2>Dónde encontrarnos</h2>
       <p>Localiza la máquina más cercana</p>
     </div>
@@ -435,6 +477,67 @@
     <div class="carousel-dots" id="mapCarouselDots"></div>
   </section>
 
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="section-header">
+      <span class="section-eyebrow">Ayuda</span>
+      <h2>Preguntas frecuentes</h2>
+      <p>Todo lo que necesitas saber</p>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>¿Dónde están vuestras máquinas?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Tenemos máquinas repartidas por Barcelona y alrededores, en centros deportivos, locales de ocio y otros establecimientos. Puedes ver las ubicaciones exactas en el mapa de más arriba.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>¿Qué formas de pago aceptáis?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>El pago es solo con tarjeta, contactless o móvil (Apple Pay, Google Pay). No aceptamos efectivo.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>¿Con qué frecuencia reponéis el stock?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Revisamos y reponemos las máquinas de forma periódica para que siempre tengas acceso a las últimas colecciones y novedades disponibles.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>¿Puedo pedir una máquina para mi local?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Sí. Instalamos y mantenemos la máquina sin coste para ti. Puedes llamarnos, escribirnos por email o mandarnos un mensaje por Instagram y te damos toda la información.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>¿Qué colecciones y juegos tenéis disponibles?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Encontrarás sobres de Pokémon TCG, One Piece TCG y Dragon Ball SCG, con las colecciones y ediciones especiales más recientes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- STATS (comentado temporalmente)
   <section class="section stats-section">
     <div class="stats-grid">
@@ -461,6 +564,7 @@
   <!-- CONTACTO EMPRESAS -->
   <section class="section section-dark" id="empresas">
     <div class="section-header">
+      <span class="section-eyebrow">Colabora</span>
       <h2>Contacto para empresas y locales</h2>
       <p>¿Quieres una máquina vending en tu establecimiento?</p>
     </div>
@@ -516,6 +620,9 @@
   <script src="js/navbar.js" defer></script>
   <script src="js/carousel.js" defer></script>
   <script src="js/map-carousel.js" defer></script>
+  <script src="js/faq.js" defer></script>
+  <script src="js/cursor-glow.js" defer></script>
+  <script src="js/holo-tilt.js" defer></script>
   <script src="js/animations.js" defer></script>
   <script src="js/promo-modal.js" defer></script>
 </body>
