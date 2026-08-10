@@ -64,6 +64,7 @@
   <link rel="stylesheet" href="css/contact.css" />
   <link rel="stylesheet" href="css/footer.css" />
   <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/promo-modal.css" />
 </head>
 <body>
 
@@ -356,27 +357,82 @@
       <p>Localiza la máquina más cercana</p>
     </div>
 
-    <!-- ── CÓMO AÑADIR EL MAPA ────────────────────────────
-         1. Ve a Google Maps y busca tu ubicación
+    <!-- ── CÓMO AÑADIR CADA MAPA ──────────────────────────
+         1. Ve a Google Maps y busca la ubicación
          2. Haz clic en "Compartir" → "Insertar un mapa"
          3. Copia el código <iframe ...> que te da Google
-         4. Pégalo aquí sustituyendo el iframe de abajo
+         4. Pégalo en el src="" del iframe correspondiente
+         5. Cambia el texto de <h3> por el nombre de esa ubicación
     ──────────────────────────────────────────────────── -->
-    <div class="map-wrap">
-      <iframe
-        class="map-frame"
-        src=""
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        title="Ubicación TCG Barna Vending">
-      </iframe>
-      <div class="map-placeholder">
-        <span>📍</span>
-        <p>Añade el embed de Google Maps</p>
-        <small>Ve a Google Maps → Compartir → Insertar un mapa → copia el &lt;iframe&gt;</small>
+    <div class="map-carousel-wrapper">
+      <button class="carousel-btn prev" id="mapPrevBtn">&#8249;</button>
+
+      <div class="map-carousel-track-container">
+        <div class="map-carousel-track" id="mapCarouselTrack">
+
+          <div class="map-carousel-slide">
+            <h3 class="map-slide-title">SomMultiespai</h3>
+            <div class="map-wrap">
+              <iframe
+                class="map-frame"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2991.189699622847!2d2.1759365853037416!3d41.43510531903121!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4bd26b6b2cc13%3A0xd1b1a5ef67da01bc!2sSOM%20Multiespai!5e0!3m2!1ses!2ses!4v1786381112158!5m2!1ses!2ses"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="SomMultiespai — TCG Barna Vending">
+              </iframe>
+              <div class="map-placeholder">
+                <span>📍</span>
+                <p>Añade el embed de Google Maps</p>
+                <small>Ve a Google Maps → Compartir → Insertar un mapa → copia el &lt;iframe&gt;</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="map-carousel-slide">
+            <h3 class="map-slide-title">Enjoy Padel Sabadell</h3>
+            <div class="map-wrap">
+              <iframe
+                class="map-frame"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2986.2797479057217!2d2.117887275819692!3d41.54153978641957!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4959855947e59%3A0x5636aeb51ff1d1c1!2sEnjoy%20Padel%20Sabadell%20SL!5e0!3m2!1sen!2ses!4v1786381223171!5m2!1sen!2ses"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Enjoy Padel Sabadell — TCG Barna Vending">
+              </iframe>
+              <div class="map-placeholder">
+                <span>📍</span>
+                <p>Añade el embed de Google Maps</p>
+                <small>Ve a Google Maps → Compartir → Insertar un mapa → copia el &lt;iframe&gt;</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="map-carousel-slide">
+            <h3 class="map-slide-title">La Mar Bella Municipal Sports Complex</h3>
+            <div class="map-wrap">
+              <iframe
+                class="map-frame"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2992.8051888506866!2d2.2093644758127624!3d41.400036895210704!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4a3427884441d%3A0xa21c45d265f0581e!2sLa%20Mar%20Bella%20Municipal%20Sports%20Complex!5e0!3m2!1sen!2ses!4v1786381243292!5m2!1sen!2ses"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="La Mar Bella Municipal Sports Complex — TCG Barna Vending">
+              </iframe>
+              <div class="map-placeholder">
+                <span>📍</span>
+                <p>Añade el embed de Google Maps</p>
+                <small>Ve a Google Maps → Compartir → Insertar un mapa → copia el &lt;iframe&gt;</small>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
+
+      <button class="carousel-btn next" id="mapNextBtn">&#8250;</button>
     </div>
+    <div class="carousel-dots" id="mapCarouselDots"></div>
   </section>
 
   <!-- STATS (comentado temporalmente)
@@ -454,6 +510,8 @@
 
   <script src="js/navbar.js" defer></script>
   <script src="js/carousel.js" defer></script>
+  <script src="js/map-carousel.js" defer></script>
   <script src="js/animations.js" defer></script>
+  <script src="js/promo-modal.js" defer></script>
 </body>
 </html>

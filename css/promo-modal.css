@@ -1,0 +1,189 @@
+/* PROMO MODAL — popup promocional de Instagram */
+
+.promo-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(6, 7, 15, .78);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .35s ease, visibility .35s ease;
+}
+
+.promo-modal-overlay.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.promo-modal {
+  display: flex;
+  width: 100%;
+  max-width: 760px;
+  max-height: 90vh;
+  background: var(--dark2);
+  border: 1px solid var(--line-strong);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--shadow), 0 0 0 1px rgba(217, 164, 65, .08);
+  transform: scale(.94) translateY(10px);
+  opacity: 0;
+  transition: transform .35s cubic-bezier(.2, .8, .2, 1), opacity .35s ease;
+}
+
+.promo-modal-overlay.is-visible .promo-modal {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+/* IZQUIERDA — imagen */
+.promo-modal-media {
+  flex: 0 0 45%;
+  position: relative;
+  min-height: 0;
+}
+
+.promo-modal-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* DERECHA — contenido */
+.promo-modal-content {
+  flex: 0 0 55%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40px 32px 32px;
+  background: linear-gradient(160deg, var(--dark2) 0%, var(--dark) 100%);
+}
+
+.promo-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  background: rgba(255, 255, 255, .04);
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .2s ease, border-color .2s ease, transform .2s ease;
+}
+
+.promo-modal-close:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent-line);
+  transform: rotate(90deg);
+}
+
+.promo-modal-body {
+  margin-top: 28px;
+}
+
+.promo-modal-eyebrow {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.promo-modal-title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 12px;
+  line-height: 1.2;
+}
+
+.promo-modal-text {
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0;
+}
+
+.promo-modal-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 24px;
+  padding: 15px 24px;
+  border-radius: var(--radius);
+  border: none;
+  background: linear-gradient(135deg, #FFD700 0%, #FF8C00 50%, #FF4444 100%);
+  color: #1a0e00;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14.5px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(255, 90, 30, .28);
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+}
+
+.promo-modal-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 34px rgba(255, 90, 30, .42);
+  filter: brightness(1.08);
+}
+
+/* RESPONSIVE */
+@media (max-width: 640px) {
+  .promo-modal {
+    flex-direction: column;
+    max-height: 88vh;
+    overflow-y: auto;
+  }
+
+  .promo-modal-media {
+    flex: 0 0 auto;
+    height: 200px;
+  }
+
+  .promo-modal-content {
+    flex: 1 1 auto;
+    padding: 28px 22px 24px;
+  }
+
+  .promo-modal-body {
+    margin-top: 10px;
+  }
+
+  .promo-modal-title {
+    font-size: 20px;
+  }
+}
+
+/* Contenido de página oscurecido/desenfocado mientras el modal está abierto */
+body.promo-modal-open > :not(.promo-modal-overlay) {
+  filter: blur(2px) brightness(.7);
+  transition: filter .35s ease;
+}
+
+body.promo-modal-open {
+  overflow: hidden;
+}

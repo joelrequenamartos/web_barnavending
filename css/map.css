@@ -14,7 +14,6 @@
   height: 100%;
   border: none;
   display: block;
-  filter: grayscale(1) invert(.92) contrast(.9);
 }
 
 .map-frame[src=""] { display: none; }
@@ -43,3 +42,36 @@
 .map-placeholder small { font-size: .78rem; max-width: 360px; line-height: 1.5; }
 
 .map-frame:not([src=""]) + .map-placeholder { display: none; }
+
+/* ── CARRUSEL DE MAPAS ────────────────────────────── */
+.map-carousel-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.map-carousel-track-container {
+  flex: 1;
+  overflow: hidden;
+}
+
+.map-carousel-track {
+  display: flex;
+  transition: transform .5s cubic-bezier(.4,0,.2,1);
+}
+
+.map-carousel-slide {
+  min-width: 100%;
+  padding: 0 .5rem;
+}
+
+.map-slide-title {
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 1rem;
+}
