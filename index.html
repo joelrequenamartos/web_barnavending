@@ -102,6 +102,8 @@
   <link rel="stylesheet" href="css/responsive.css" />
   <link rel="stylesheet" href="css/promo-modal.css" />
   <link rel="stylesheet" href="css/faq.css" />
+  <link rel="stylesheet" href="css/cookies.css" />
+  <link rel="stylesheet" href="css/sugerencias.css" />
 </head>
 <body>
 
@@ -116,8 +118,8 @@
       <li><a href="#inicio">Inicio</a></li>
       <li><a href="#productos">Productos</a></li>
       <li><a href="#llegadas">Novedades</a></li>
-      <li><a href="#maquinas">Máquinas</a></li>
       <li><a href="#ubicaciones">Dónde estamos</a></li>
+      <li><a href="#maquinas">Máquinas</a></li>
     </ul>
     <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">&#9776;</button>
   </nav>
@@ -464,11 +466,122 @@
     <div class="carousel-dots" id="galleryDots"></div>
   </section>
 
+  <!-- MAPA -->
+  <section class="section" id="ubicaciones">
+    <div class="section-header">
+      <span class="section-eyebrow">Mapa</span>
+      <h2>Dónde encontrarnos</h2>
+      <p>Localiza la máquina más cercana</p>
+    </div>
+
+    <!-- ── CÓMO AÑADIR CADA MAPA ──────────────────────────
+         1. Ve a Google Maps y busca la ubicación
+         2. Haz clic en "Compartir" → "Insertar un mapa"
+         3. Copia el código <iframe ...> que te da Google
+         4. Pega la URL del src en el data-src="" del iframe (el src="" se deja vacío:
+            js/cookie-consent.js lo rellena cuando el visitante acepta las cookies)
+         5. Cambia el texto de <h3> por el nombre de esa ubicación
+    ──────────────────────────────────────────────────── -->
+    <div class="map-carousel-wrapper">
+      <button class="carousel-btn prev" id="mapPrevBtn">&#8249;</button>
+
+      <div class="map-carousel-track-container">
+        <div class="map-carousel-track" id="mapCarouselTrack">
+
+          <div class="map-carousel-slide">
+            <h3 class="map-slide-title">SomMultiespai</h3>
+            <div class="map-slide-body">
+              <div class="map-wrap">
+                <iframe
+                  class="map-frame"
+                  src=""
+                  data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2991.189699622847!2d2.1759365853037416!3d41.43510531903121!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4bd26b6b2cc13%3A0xd1b1a5ef67da01bc!2sSOM%20Multiespai!5e0!3m2!1ses!2ses!4v1786381112158!5m2!1ses!2ses"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  title="SomMultiespai — TCG Barna Vending">
+                </iframe>
+                <div class="map-placeholder">
+                  <span>📍</span>
+                  <p>Mapa bloqueado por cookies</p>
+                  <small>Google Maps instala cookies al cargar el mapa. <a href="cookies.html">Más información</a></small>
+                  <button type="button" class="map-consent-btn" data-cookie-accept>Aceptar y ver mapa</button>
+                </div>
+              </div>
+              <figure class="map-photo">
+                <img src="imagenes/ubicaciones/som-multiespai.webp" alt="Máquina vending de TCG Barna Vending en SomMultiespai" loading="lazy" />
+                <figcaption>📸 La máquina en persona</figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <div class="map-carousel-slide">
+            <h3 class="map-slide-title">Enjoy Padel Sabadell</h3>
+            <div class="map-slide-body">
+              <div class="map-wrap">
+                <iframe
+                  class="map-frame"
+                  src=""
+                  data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2986.2797479057217!2d2.117887275819692!3d41.54153978641957!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4959855947e59%3A0x5636aeb51ff1d1c1!2sEnjoy%20Padel%20Sabadell%20SL!5e0!3m2!1sen!2ses!4v1786381223171!5m2!1sen!2ses"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  title="Enjoy Padel Sabadell — TCG Barna Vending">
+                </iframe>
+                <div class="map-placeholder">
+                  <span>📍</span>
+                  <p>Mapa bloqueado por cookies</p>
+                  <small>Google Maps instala cookies al cargar el mapa. <a href="cookies.html">Más información</a></small>
+                  <button type="button" class="map-consent-btn" data-cookie-accept>Aceptar y ver mapa</button>
+                </div>
+              </div>
+              <figure class="map-photo">
+                <img src="imagenes/ubicaciones/enjoy-padel-sabadell.webp" alt="Máquina vending de TCG Barna Vending en Enjoy Padel Sabadell" loading="lazy" />
+                <figcaption>📸 La máquina en persona</figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <div class="map-carousel-slide">
+            <h3 class="map-slide-title">La Mar Bella Municipal Sports Complex</h3>
+            <div class="map-slide-body">
+              <div class="map-wrap">
+                <iframe
+                  class="map-frame"
+                  src=""
+                  data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2992.8051888506866!2d2.2093644758127624!3d41.400036895210704!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4a3427884441d%3A0xa21c45d265f0581e!2sLa%20Mar%20Bella%20Municipal%20Sports%20Complex!5e0!3m2!1sen!2ses!4v1786381243292!5m2!1sen!2ses"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  title="La Mar Bella Municipal Sports Complex — TCG Barna Vending">
+                </iframe>
+                <div class="map-placeholder">
+                  <span>📍</span>
+                  <p>Mapa bloqueado por cookies</p>
+                  <small>Google Maps instala cookies al cargar el mapa. <a href="cookies.html">Más información</a></small>
+                  <button type="button" class="map-consent-btn" data-cookie-accept>Aceptar y ver mapa</button>
+                </div>
+              </div>
+              <figure class="map-photo">
+                <img src="imagenes/ubicaciones/mar-bella.webp" alt="Máquina vending de TCG Barna Vending en La Mar Bella Municipal Sports Complex" loading="lazy" />
+                <figcaption>📸 La máquina en persona</figcaption>
+              </figure>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <button class="carousel-btn next" id="mapNextBtn">&#8250;</button>
+    </div>
+    <div class="carousel-dots" id="mapCarouselDots"></div>
+  </section>
+
   <!-- CARRUSEL DE MÁQUINAS -->
-  <section class="section" id="maquinas">
+  <section class="section section-dark" id="maquinas">
     <div class="section-header">
       <span class="section-eyebrow">Red vending</span>
-      <h2>Nuestras Máquinas</h2>
+      <h2>Máquinas Disponibles</h2>
       <p>Encuéntranos en centros comerciales, tiendas y eventos</p>
     </div>
 
@@ -539,110 +652,6 @@
     <div class="carousel-dots" id="carouselDots"></div>
   </section>
 
-  <!-- MAPA -->
-  <section class="section section-dark" id="ubicaciones">
-    <div class="section-header">
-      <span class="section-eyebrow">Mapa</span>
-      <h2>Dónde encontrarnos</h2>
-      <p>Localiza la máquina más cercana</p>
-    </div>
-
-    <!-- ── CÓMO AÑADIR CADA MAPA ──────────────────────────
-         1. Ve a Google Maps y busca la ubicación
-         2. Haz clic en "Compartir" → "Insertar un mapa"
-         3. Copia el código <iframe ...> que te da Google
-         4. Pégalo en el src="" del iframe correspondiente
-         5. Cambia el texto de <h3> por el nombre de esa ubicación
-    ──────────────────────────────────────────────────── -->
-    <div class="map-carousel-wrapper">
-      <button class="carousel-btn prev" id="mapPrevBtn">&#8249;</button>
-
-      <div class="map-carousel-track-container">
-        <div class="map-carousel-track" id="mapCarouselTrack">
-
-          <div class="map-carousel-slide">
-            <h3 class="map-slide-title">SomMultiespai</h3>
-            <div class="map-slide-body">
-              <div class="map-wrap">
-                <iframe
-                  class="map-frame"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2991.189699622847!2d2.1759365853037416!3d41.43510531903121!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4bd26b6b2cc13%3A0xd1b1a5ef67da01bc!2sSOM%20Multiespai!5e0!3m2!1ses!2ses!4v1786381112158!5m2!1ses!2ses"
-                  allowfullscreen=""
-                  loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"
-                  title="SomMultiespai — TCG Barna Vending">
-                </iframe>
-                <div class="map-placeholder">
-                  <span>📍</span>
-                  <p>Añade el embed de Google Maps</p>
-                  <small>Ve a Google Maps → Compartir → Insertar un mapa → copia el &lt;iframe&gt;</small>
-                </div>
-              </div>
-              <figure class="map-photo">
-                <img src="imagenes/ubicaciones/som-multiespai.webp" alt="Máquina vending de TCG Barna Vending en SomMultiespai" loading="lazy" />
-                <figcaption>📸 La máquina en persona</figcaption>
-              </figure>
-            </div>
-          </div>
-
-          <div class="map-carousel-slide">
-            <h3 class="map-slide-title">Enjoy Padel Sabadell</h3>
-            <div class="map-slide-body">
-              <div class="map-wrap">
-                <iframe
-                  class="map-frame"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2986.2797479057217!2d2.117887275819692!3d41.54153978641957!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4959855947e59%3A0x5636aeb51ff1d1c1!2sEnjoy%20Padel%20Sabadell%20SL!5e0!3m2!1sen!2ses!4v1786381223171!5m2!1sen!2ses"
-                  allowfullscreen=""
-                  loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"
-                  title="Enjoy Padel Sabadell — TCG Barna Vending">
-                </iframe>
-                <div class="map-placeholder">
-                  <span>📍</span>
-                  <p>Añade el embed de Google Maps</p>
-                  <small>Ve a Google Maps → Compartir → Insertar un mapa → copia el &lt;iframe&gt;</small>
-                </div>
-              </div>
-              <figure class="map-photo">
-                <img src="imagenes/ubicaciones/enjoy-padel-sabadell.webp" alt="Máquina vending de TCG Barna Vending en Enjoy Padel Sabadell" loading="lazy" />
-                <figcaption>📸 La máquina en persona</figcaption>
-              </figure>
-            </div>
-          </div>
-
-          <div class="map-carousel-slide">
-            <h3 class="map-slide-title">La Mar Bella Municipal Sports Complex</h3>
-            <div class="map-slide-body">
-              <div class="map-wrap">
-                <iframe
-                  class="map-frame"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2992.8051888506866!2d2.2093644758127624!3d41.400036895210704!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4a3427884441d%3A0xa21c45d265f0581e!2sLa%20Mar%20Bella%20Municipal%20Sports%20Complex!5e0!3m2!1sen!2ses!4v1786381243292!5m2!1sen!2ses"
-                  allowfullscreen=""
-                  loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"
-                  title="La Mar Bella Municipal Sports Complex — TCG Barna Vending">
-                </iframe>
-                <div class="map-placeholder">
-                  <span>📍</span>
-                  <p>Añade el embed de Google Maps</p>
-                  <small>Ve a Google Maps → Compartir → Insertar un mapa → copia el &lt;iframe&gt;</small>
-                </div>
-              </div>
-              <figure class="map-photo">
-                <img src="imagenes/ubicaciones/mar-bella.webp" alt="Máquina vending de TCG Barna Vending en La Mar Bella Municipal Sports Complex" loading="lazy" />
-                <figcaption>📸 La máquina en persona</figcaption>
-              </figure>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <button class="carousel-btn next" id="mapNextBtn">&#8250;</button>
-    </div>
-    <div class="carousel-dots" id="mapCarouselDots"></div>
-  </section>
-
   <!-- FAQ -->
   <section class="section" id="faq">
     <div class="section-header">
@@ -699,6 +708,48 @@
         </button>
         <div class="faq-answer">
           <p>Encontrarás sobres de Pokémon TCG, One Piece TCG y Dragon Ball SCG, con las colecciones y ediciones especiales más recientes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUGERENCIAS -->
+  <section class="section sugerencias" id="sugerencias">
+    <div class="sug-split">
+      <div class="sug-copy">
+        <span class="section-eyebrow">Sugerencias</span>
+        <h2>¿Qué te gustaría encontrar?</h2>
+        <p>Cuéntanos qué colección o mejora te gustaría ver en nuestras máquinas.</p>
+      </div>
+
+      <!-- Formulario de sugerencias. Envía a /api/sugerencias (api/sugerencias.mjs), que manda el correo con Resend a tcgbarnavending@gmail.com.
+           Necesita la variable RESEND_API_KEY en Vercel. Para cambiar el destinatario: variable CONTACT_TO en Vercel. -->
+      <div class="sug-wrap">
+        <form class="sug-form" id="sugForm" data-endpoint="/api/sugerencias" novalidate>
+          <label class="sug-field">
+            <span>Nombre</span>
+            <input type="text" name="nombre" autocomplete="name" maxlength="120" required />
+          </label>
+          <label class="sug-field">
+            <span>Email</span>
+            <input type="email" name="correo" autocomplete="email" maxlength="200" required />
+          </label>
+          <label class="sug-field">
+            <span>Sugerencia</span>
+            <textarea name="mensaje" rows="4" maxlength="5000" required></textarea>
+          </label>
+          <p class="sug-legal">Al enviar aceptas nuestra <a href="privacidad.html">política de privacidad</a>.</p>
+          <input class="sug-hp" type="text" name="web" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <div class="sug-actions">
+            <p class="sug-status" role="status" aria-live="polite"></p>
+            <button class="btn-primary" type="submit">Enviar</button>
+          </div>
+        </form>
+        <div class="sug-thanks" role="status" aria-live="polite">
+          <div class="sug-bubble">
+            <strong>¡Gracias!</strong>
+            <span>Tomamos nota de tu sugerencia.</span>
+          </div>
         </div>
       </div>
     </div>
@@ -765,11 +816,6 @@
         <p>Colecciona en cada esquina</p>
       </div>
       <div class="footer-links">
-        <a href="#inicio">Inicio</a>
-        <a href="#productos">Productos</a>
-        <a href="#llegadas">Novedades</a>
-        <a href="#maquinas">Máquinas</a>
-        <a href="#ubicaciones">Dónde estamos</a>
         <a href="#empresas">Empresas</a>
       </div>
     </div>
@@ -800,6 +846,8 @@
   <script src="js/holo-tilt.js" defer></script>
   <script src="js/animations.js" defer></script>
   <script src="js/promo-modal.js" defer></script>
+  <script src="js/cookie-consent.js" defer></script>
+  <script src="js/sugerencias.js" defer></script>
   <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
