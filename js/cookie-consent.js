@@ -43,15 +43,22 @@
     if (banner) { banner.remove(); banner = null; }
   }
 
+  // Avisa al resto de la web (p. ej. el popup) de que ya se ha decidido
+  function decided(value) {
+    document.dispatchEvent(new CustomEvent('tcg:cookies', { detail: value }));
+  }
+
   function accept() {
     setChoice('accepted');
     hideBanner();
     loadMaps();
+    decided('accepted');
   }
 
   function reject() {
     setChoice('rejected');
     hideBanner();
+    decided('rejected');
   }
 
   // Botones "Ver mapa" dentro de cada mapa bloqueado: aceptar desde ahí
