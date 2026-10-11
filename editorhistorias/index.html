@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <base href="/editorhistorias/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Estudio Instagram — TCG Barna Vending</title>
+  <meta name="robots" content="noindex, nofollow" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="estudio.css" />
+</head>
+<body>
+
+  <header class="top">
+    <img src="../imagenes/logo.png" alt="" />
+    <div>
+      <strong>Estudio Instagram</strong>
+      <span>Historias, posts y overlays con el estilo de la web</span>
+    </div>
+  </header>
+
+  <main class="layout">
+    <!-- PANEL DE CONTROLES -->
+    <aside class="panel">
+
+      <!-- IDEAS RÁPIDAS -->
+      <div class="grupo">
+        <div class="fila-etiqueta">
+          <span class="etiqueta">Ideas rápidas <small>(un clic y luego lo ajustas)</small></span>
+          <button type="button" class="mini" id="btnDeshacer" hidden>↩︎ Deshacer</button>
+        </div>
+        <div class="ideas" id="ideas"></div>
+        <details class="extra" id="misDisenos">
+          <summary>Mis diseños guardados</summary>
+          <div class="guardar">
+            <input type="text" id="nombreDiseno" placeholder="Nombre del diseño" maxlength="40" />
+            <button type="button" class="reset" id="btnGuardar">Guardar el actual</button>
+          </div>
+          <div class="ideas" id="listaDisenos"></div>
+          <p class="nota">Se guardan textos, colores y fondo en este navegador (las fotos no).</p>
+        </details>
+      </div>
+
+      <div class="grupo">
+        <span class="etiqueta">Plantilla</span>
+        <div class="tabs" data-name="template">
+          <button type="button" data-value="novedad">✨ Novedad</button>
+          <button type="button" data-value="proximamente">👀 Próximamente</button>
+          <button type="button" data-value="reposicion">🔄 Reposición</button>
+          <button type="button" data-value="sorteo">🎁 Sorteo</button>
+          <button type="button" data-value="pull">🔥 Pull</button>
+          <button type="button" data-value="overlay">📷 Overlay foto</button>
+          <button type="button" data-value="donde">📍 Dónde estamos</button>
+          <button type="button" data-value="info">💡 Cómo funciona</button>
+          <button type="button" data-value="anuncio">📢 Anuncio</button>
+          <button type="button" data-value="versus">⚔️ Versus</button>
+          <button type="button" data-value="top">🏆 Top 3</button>
+          <button type="button" data-value="resena">⭐ Reseña</button>
+          <button type="button" data-value="carta">🃏 Carta</button>
+        </div>
+      </div>
+
+      <div class="grupo">
+        <span class="etiqueta">Formato</span>
+        <div class="tabs" data-name="format">
+          <button type="button" data-value="story">Historia 9:16</button>
+          <button type="button" data-value="post">Post 4:5</button>
+          <button type="button" data-value="square">Cuadrado 1:1</button>
+        </div>
+        <div class="checks" data-if="format=story">
+          <label class="check"><input type="checkbox" name="safe" /> Dejar libre la zona que tapa Instagram</label>
+          <label class="check"><input type="checkbox" name="guides" /> Ver esas zonas <small>(no salen en el PNG)</small></label>
+        </div>
+      </div>
+
+      <div class="grupo">
+        <span class="etiqueta">Colores</span>
+        <div class="tabs swatches" data-name="theme"></div>
+        <label class="campo" data-if="theme=custom">
+          <span class="etiqueta">Tu color</span>
+          <input type="color" name="customColor" />
+        </label>
+      </div>
+
+      <!-- FONDO Y EFECTOS -->
+      <div class="grupo" data-if="template!=overlay">
+        <div class="fila-etiqueta">
+          <span class="etiqueta">Fondo</span>
+          <button type="button" class="mini" id="btnVariar" title="Recoloca estrellas, líneas, destellos y confeti">🎲 Otra variación</button>
+        </div>
+        <div class="tabs fondos" data-name="bg"></div>
+        <div class="campo" data-if="bg=energia">
+          <span class="etiqueta">Energía del fondo</span>
+          <div class="tabs swatches" data-name="energy"></div>
+          <label class="check"><input type="checkbox" name="energyTheme" /> Usar los colores del tema</label>
+        </div>
+        <label class="check"><input type="checkbox" name="animate" /> Animar el fondo <small>(para vídeo)</small></label>
+        <label class="campo" data-if="animate=true">
+          <span class="etiqueta">Duración del vídeo <small>(se repite en bucle sin cortes)</small></span>
+          <select name="animDur">
+            <option value="5">5 segundos</option>
+            <option value="8">8 segundos</option>
+            <option value="12">12 segundos</option>
+            <option value="15">15 segundos</option>
+          </select>
+        </label>
+        <div class="campo" data-if="bg=foto">
+          <span class="etiqueta">Imagen de fondo</span>
+          <input type="file" id="inputFondo" accept="image/*" />
+          <div class="sliders dos">
+            <label class="campo"><span class="etiqueta">Oscurecer</span><input type="range" name="bgDim" min="0" max="0.9" step="0.01" /></label>
+            <label class="check"><input type="checkbox" name="bgBlur" /> Desenfocar</label>
+          </div>
+        </div>
+        <span class="etiqueta">Decoración</span>
+        <div class="tabs" data-name="deco">
+          <button type="button" data-value="">Nada</button>
+          <button type="button" data-value="destellos">✦ Destellos</button>
+          <button type="button" data-value="confeti">🎊 Confeti</button>
+          <button type="button" data-value="cartas">🃏 Cartas</button>
+          <button type="button" data-value="burbujas">🫧 Burbujas</button>
+        </div>
+        <span class="etiqueta">Marco</span>
+        <div class="tabs" data-name="frame">
+          <button type="button" data-value="">Sin marco</button>
+          <button type="button" data-value="foil">Foil</button>
+          <button type="button" data-value="doble">Doble línea</button>
+          <button type="button" data-value="esquinas">Esquinas</button>
+          <button type="button" data-value="carta">Borde de carta</button>
+        </div>
+        <label class="campo" data-if="frame=carta">
+          <span class="etiqueta">Color del borde</span>
+          <select name="cardBorder">
+            <option value="auto">Automático (amarillo)</option>
+            <option value="amarillo">Amarillo</option>
+            <option value="plata">Plateado</option>
+            <option value="oro">Dorado</option>
+            <option value="negro">Negro</option>
+            <option value="arcoiris">Arcoíris</option>
+            <option value="tema">Color del tema</option>
+          </select>
+        </label>
+        <div class="checks">
+          <label class="check"><input type="checkbox" name="grain" /> Textura de grano <small>(como la web)</small></label>
+          <label class="check" data-if="template=novedad|proximamente|reposicion|sorteo|versus|top|carta"><input type="checkbox" name="shine" /> Brillo holográfico en los sobres</label>
+        </div>
+      </div>
+
+      <!-- CABECERA Y PIE -->
+      <div class="grupo">
+        <span class="etiqueta">Cabecera y pie</span>
+        <div class="checks">
+          <label class="check"><input type="checkbox" name="showLogo" /> Logo</label>
+          <label class="check"><input type="checkbox" name="showName" /> Nombre de la empresa <small>(TCG Barna Vending)</small></label>
+        </div>
+        <div class="dos">
+          <label class="campo">
+            <span class="etiqueta">Abajo izquierda</span>
+            <input type="text" name="footLeft" />
+          </label>
+          <label class="campo">
+            <span class="etiqueta">Abajo derecha</span>
+            <input type="text" name="footRight" />
+          </label>
+        </div>
+        <p class="nota">Deja un texto vacío para que no salga.</p>
+      </div>
+
+      <!-- NOVEDAD -->
+      <div class="grupo" data-if="template=novedad">
+        <label class="campo">
+          <span class="etiqueta">Sobre</span>
+          <select name="pack" data-pack-select></select>
+        </label>
+        <label class="campo">
+          <span class="etiqueta">Etiqueta superior</span>
+          <input type="text" name="novEyebrow" />
+        </label>
+        <label class="campo">
+          <span class="etiqueta">Título <small>(vacío = nombre del sobre)</small></span>
+          <input type="text" name="novTitle" />
+        </label>
+        <label class="campo">
+          <span class="etiqueta">Subtítulo</span>
+          <input type="text" name="novSub" />
+        </label>
+        <label class="campo">
+          <span class="etiqueta">Sello</span>
+          <select name="novSeal">
+            <option value="">Sin sello</option>
+            <option value="limitada">Edición limitada</option>
+            <option value="ultimas">Últimas unidades</option>
+            <option value="oferta">Oferta</option>
+            <option value="agotado">Agotado</option>
+            <option value="custom">Texto propio…</option>
+          </select>
+        </label>
+        <label class="campo" data-if="novSeal=custom">
+          <span class="etiqueta">Texto del sello</span>
+          <input type="text" name="novSealText" placeholder="Ej.: 2 × 10 €" />
+        </label>
+      </div>
+
+      <!-- PRÓXIMAMENTE -->
+      <div class="grupo" data-if="template=proximamente">
+        <label class="campo">
+          <span class="etiqueta">Sobre</span>
+          <select name="proxPack" data-pack-select></select>
+        </label>
+        <label class="check"><input type="checkbox" name="proxMystery" /> Misterio (silueta con «?»)</label>
+        <label class="campo">
+          <span class="etiqueta">Etiqueta superior</span>
+          <input type="text" name="proxEyebrow" />
+        </label>
+        <label class="campo">
+          <span class="etiqueta">Título <small>(vacío = nombre del sobre)</small></span>
+          <input type="text" name="proxTitle" />
+        </label>
+        <label class="campo">
+          <span class="etiqueta">Fecha de llegada</span>
+          <input type="text" name="proxDate" />
+        </label>
+        <label class="campo">
+          <span class="etiqueta">Subtítulo <small>(opcional)</small></span>
+          <input type="text" name="proxSub" />
+        </label>
+      </div>
+
+      <!-- REPOSICIÓN -->
+      <div class="grupo" data-if="template=reposicion">
+        <label class="campo">
+          <span class="etiqueta">Etiqueta superior</span>
+          <input type="text" name="repEyebrow" />
+        </label>
+        <label class="campo">
+          <span class="etiqueta">Título</span>
+          <input type="text" name="repTitle" />
+        </label>
+        <label class="campo">
+          <span class="etiqueta">Fecha <small>(opcional)</small></span>
+          <input type="text" name="repDate" />
+        </label>
+        <div class="campo">
+          <span class="etiqueta">Sobres <small data-limit="repPacks"></small></span>
+          <div class="lista-sobres" data-packs="repPacks"></div>
+        </div>
+      </div>
+
+      <!-- SORTEO -->
+      <div class="grupo" data-if="template=sorteo">
+        <label class="campo">
+          <span class="etiqueta">Etiqueta superior</span>
+          <input type="text" name="sorEyebrow" />
+        </label>
+        <label class="campo">
+          <span class="etiqueta">Título</span>
+          <input type="text" name="sorTitle" />
+        </label>
+        <label class="campo">
+          <span class="etiqueta">Cómo participar <small>(un paso por línea, máx. 4)</small></span>
+          <textarea name="sorSteps" rows="4"></textarea>
+        </label>
+        <label class="campo">
+          <span class="etiqueta">Fecha límite</span>
+          <input type="text" name="sorDate" />
+        </label>
+        <div class="campo">
+          <span class="etiqueta">Premio <small data-limit="sorPacks"></small></span>
+          <div class="lista-sobres" data-packs="sorPacks"></div>
+        </div>
+      </div>
+
+      <!-- FOTO (overlay y pull) -->
+      <div class="grupo" data-if="template=overlay|pull">
+        <label class="campo">
+          <span class="etiqueta">Foto</span>
+          <input type="file" id="inputFoto" accept="image/*" />
+        </label>
+        <div class="sliders">
+          <label class="campo"><span class="etiqueta">Zoom</span><input type="range" name="photoZoom" min="1" max="2.5" step="0.01" /></label>
+          <label class="campo"><span class="etiqueta">Horizontal</span><input type="range" name="photoX" min="-1" max="1" step="0.01" /></label>
+          <label class="campo"><span class="etiqueta">Vertical</span><input type="range" name="photoY" min="-1" max="1" step="0.01" /></label>
+        </div>
+        <p class="nota">También puedes arrastrar la foto en la vista previa y hacer zoom con la rueda.</p>
+      </div>
+
+      <!-- PULL -->
+      <div class="grupo" data-if="template=pull">
+        <label class="campo">
+          <span class="etiqueta">Etiqueta superior</span>
+          <input type="text" name="pullEyebrow" />
+        </label>
+        <label class="campo">
+          <span class="etiqueta">Carta</span>
+          <input type="text" name="pullTitle" />
+        </label>
+        <label class="campo">
+          <span class="etiqueta">Quién la sacó <small>(@usuario o nombre)</small></span>
+          <input type="text" name="pullUser" />
+        </label>
+        <label class="campo">
+          <span class="etiqueta">Subtítulo <small>(opcional)</small></span>
+          <input type="text" name="pullSub" />
+        </label>
+      </div>
+
+      <!-- OVERLAY FOTO -->
+      <div class="grupo" data-if="template=overlay">
+        <label class="campo">
+          <span class="etiqueta">Etiqueta superior <small>(opcional)</small></span>
+          <input type="text" name="ovEyebrow" />
+        </label>
+        <label class="campo">
+          <span class="etiqueta">Título</span>
+          <input type="text" name="ovTitle" />
+        </label>
+        <label class="campo">
+          <span class="etiqueta">Subtítulo <small>(opcional)</small></span>
+          <input type="text" name="ovSub" />
+        </label>
+        <label class="check"><input type="checkbox" name="ovFrame" /> Marco dorado</label>
+        <label class="check"><input type="checkbox" name="ovOnly" /> Solo el overlay (fondo transparente)</label>
+      </div>
+
+      <!-- DÓNDE ESTAMOS -->
+      <div class="grupo" data-if="template=donde">
+        <label class="campo">
+          <span class="etiqueta">Etiqueta superior</span>
+          <input type="text" name="dondeEyebrow" />
+        </label>
+        <label class="campo">
+          <span class="etiqueta">Título</span>
+          <input type="text" name="dondeTitle" />
+        </label>
+        <label class="campo">
+          <span class="etiqueta">Subtítulo <small>(opcional)</small></span>
+          <input type="text" name="dondeSub" />
+        </label>
+        <div class="campo">
+          <span class="etiqueta">Máquinas</span>
+          <div class="checks" id="listaLocs"></div>
+        </div>
+      </div>
+
+      <!-- CÓMO FUNCIONA -->
+      <div class="grupo" data-if="template=info">
+        <label class="campo">
+          <span class="etiqueta">Etiqueta superior</span>
+          <input type="text" name="infoEyebrow" />
+        </label>
+        <label class="campo">
+          <span class="etiqueta">Título</span>
+          <input type="text" name="infoTitle" />
+        </label>
+        <label class="campo">
+          <span class="etiqueta">Pasos <small>(uno por línea: Título | descripción, máx. 4)</small></span>
+          <textarea name="infoSteps" rows="5"></textarea>
+        </label>
+        <label class="check"><input type="checkbox" name="infoLangs" /> Mostrar los 4 idiomas</label>
+      </div>
+
+      <!-- ANUNCIO -->
+      <div class="grupo" data-if="template=anuncio">
+        <label class="campo">
+          <span class="etiqueta">Etiqueta superior</span>
+          <input type="text" name="anuEyebrow" />
+        </label>
+        <label class="campo">
+          <span class="etiqueta">Destacado <small>(emoji, número o palabra corta; vacío = nada)</small></span>
+          <input type="text" name="anuIcon" placeholder="Ej.: 🎉 · 1.000 · -20 %" />
+        </label>
+        <label class="campo">
+          <span class="etiqueta">Título</span>
+          <input type="text" name="anuTitle" />
+        </label>
+        <label class="campo">
+          <span class="etiqueta">Texto <small>(un párrafo por línea, máx. 4)</small></span>
+          <textarea name="anuText" rows="3"></textarea>
+        </label>
+        <label class="campo">
+          <span class="etiqueta">Botón <small>(opcional)</small></span>
+          <input type="text" name="anuCta" />
+        </label>
+      </div>
+
+      <!-- VERSUS -->
+      <div class="grupo" data-if="template=versus">
+        <label class="campo">
+          <span class="etiqueta">Etiqueta superior</span>
+          <input type="text" name="vsEyebrow" />
+        </label>
+        <label class="campo">
+          <span class="etiqueta">Pregunta</span>
+          <input type="text" name="vsTitle" />
+        </label>
+        <div class="dos">
+          <label class="campo">
+            <span class="etiqueta">Sobre A</span>
+            <select name="vsA" data-pack-select></select>
+          </label>
+          <label class="campo">
+            <span class="etiqueta">Sobre B</span>
+            <select name="vsB" data-pack-select></select>
+          </label>
+        </div>
+        <label class="campo">
+          <span class="etiqueta">Texto inferior <small>(opcional; deja sitio para la encuesta)</small></span>
+          <input type="text" name="vsSub" />
+        </label>
+      </div>
+
+      <!-- TOP 3 -->
+      <div class="grupo" data-if="template=top">
+        <label class="campo">
+          <span class="etiqueta">Etiqueta superior</span>
+          <input type="text" name="topEyebrow" />
+        </label>
+        <label class="campo">
+          <span class="etiqueta">Título</span>
+          <input type="text" name="topTitle" />
+        </label>
+        <label class="campo">
+          <span class="etiqueta">Subtítulo <small>(opcional)</small></span>
+          <input type="text" name="topSub" />
+        </label>
+        <div class="campo">
+          <span class="etiqueta">Sobres <small data-limit="topPacks"></small></span>
+          <div class="lista-sobres" data-packs="topPacks"></div>
+        </div>
+      </div>
+
+      <!-- RESEÑA -->
+      <div class="grupo" data-if="template=resena">
+        <label class="campo">
+          <span class="etiqueta">Etiqueta superior</span>
+          <input type="text" name="resEyebrow" />
+        </label>
+        <label class="campo">
+          <span class="etiqueta">Comentario del cliente <small>(pídele permiso)</small></span>
+          <textarea name="resQuote" rows="3"></textarea>
+        </label>
+        <label class="campo">
+          <span class="etiqueta">Quién lo dice</span>
+          <input type="text" name="resUser" />
+        </label>
+        <label class="campo">
+          <span class="etiqueta">Estrellas</span>
+          <select name="resStars">
+            <option value="5">★★★★★</option>
+            <option value="4">★★★★</option>
+            <option value="0">Sin estrellas</option>
+          </select>
+        </label>
+      </div>
+
+      <!-- CARTA -->
+      <div class="grupo" data-if="template=carta">
+        <span class="etiqueta">Edición</span>
+        <div class="tabs" data-name="cardStyle"></div>
+        <span class="etiqueta">Energía</span>
+        <div class="tabs swatches" data-name="energy"></div>
+        <label class="check"><input type="checkbox" name="energyTheme" /> Usar los colores del tema</label>
+        <label class="campo">
+          <span class="etiqueta">Borde</span>
+          <select name="cardBorder">
+            <option value="auto">Según la edición</option>
+            <option value="amarillo">Amarillo</option>
+            <option value="plata">Plateado</option>
+            <option value="oro">Dorado</option>
+            <option value="negro">Negro</option>
+            <option value="arcoiris">Arcoíris</option>
+            <option value="tema">Color del tema</option>
+          </select>
+        </label>
+        <div class="dos">
+          <label class="campo">
+            <span class="etiqueta">Ilustración</span>
+            <select name="cardArt">
+              <option value="sobre">Un sobre</option>
+              <option value="foto">Tu foto</option>
+            </select>
+          </label>
+          <label class="campo" data-if="cardArt=sobre">
+            <span class="etiqueta">Sobre</span>
+            <select name="cardPack" data-pack-select></select>
+          </label>
+        </div>
+        <div class="campo" data-if="cardArt=foto">
+          <span class="etiqueta">Foto de la ilustración</span>
+          <input type="file" id="inputFotoCarta" accept="image/*" />
+          <div class="sliders">
+            <label class="campo"><span class="etiqueta">Zoom</span><input type="range" name="photoZoom" min="1" max="2.5" step="0.01" /></label>
+            <label class="campo"><span class="etiqueta">Horizontal</span><input type="range" name="photoX" min="-1" max="1" step="0.01" /></label>
+            <label class="campo"><span class="etiqueta">Vertical</span><input type="range" name="photoY" min="-1" max="1" step="0.01" /></label>
+          </div>
+          <p class="nota">También puedes arrastrarla en la vista previa y hacer zoom con la rueda.</p>
+        </div>
+        <label class="campo">
+          <span class="etiqueta">Nombre <small>(vacío = nombre del sobre)</small></span>
+          <input type="text" name="cardName" />
+        </label>
+        <div class="dos">
+          <label class="campo"><span class="etiqueta">PS</span><input type="text" name="cardHp" /></label>
+          <label class="campo"><span class="etiqueta">Fase</span><input type="text" name="cardStage" /></label>
+        </div>
+        <label class="campo">
+          <span class="etiqueta">Ataques <small>(uno por línea: nombre | daño | texto, máx. 2)</small></span>
+          <textarea name="cardAttacks" rows="4"></textarea>
+        </label>
+        <label class="campo">
+          <span class="etiqueta">Texto pequeño <small>(bajo la ilustración, o en el recuadro de las cartas a sangre)</small></span>
+          <input type="text" name="cardInfo" />
+        </label>
+        <label class="campo">
+          <span class="etiqueta">Etiqueta encima de la carta <small>(opcional)</small></span>
+          <input type="text" name="cardEyebrow" />
+        </label>
+      </div>
+
+      <!-- UBICACIÓN -->
+      <div class="grupo" data-if="template=novedad|proximamente|reposicion|pull|overlay|top|resena|carta">
+        <label class="campo">
+          <span class="etiqueta">Ubicación</span>
+          <select name="location" id="selectLocation"></select>
+        </label>
+        <label class="campo" data-if="location=otra">
+          <span class="etiqueta">Otra ubicación</span>
+          <input type="text" name="locationCustom" />
+        </label>
+      </div>
+
+      <!-- SOBRE PERSONALIZADO -->
+      <details class="grupo extra" data-if="template=novedad|proximamente|reposicion|sorteo|versus|top|carta">
+        <summary>Sobre que no está en la lista</summary>
+        <label class="campo">
+          <span class="etiqueta">Imagen del sobre <small>(PNG con fondo transparente)</small></span>
+          <input type="file" id="inputSobre" accept="image/*" />
+        </label>
+        <label class="campo">
+          <span class="etiqueta">Nombre</span>
+          <input type="text" name="customName" />
+        </label>
+        <label class="campo">
+          <span class="etiqueta">Juego</span>
+          <select name="customBrand">
+            <option value="pokemon">Pokémon</option>
+            <option value="onepiece">One Piece</option>
+            <option value="dragonball">Dragon Ball</option>
+          </select>
+        </label>
+        <button type="button" class="reset" id="btnQuitarSobre" hidden>Quitar sobre personalizado</button>
+      </details>
+
+      <!-- TEXTO DEL POST -->
+      <div class="grupo">
+        <label class="campo">
+          <span class="etiqueta">Texto para la publicación <small>(se rehace al cambiar el diseño)</small></span>
+          <textarea id="caption" rows="7"></textarea>
+        </label>
+        <button type="button" class="reset" id="btnCopiarTexto">Copiar texto</button>
+      </div>
+
+      <button type="button" class="reset" id="btnReset">Restablecer textos</button>
+    </aside>
+
+    <!-- VISTA PREVIA -->
+    <section class="preview">
+      <div class="lienzo-wrap">
+        <canvas id="lienzo" width="1080" height="1920"></canvas>
+      </div>
+      <div class="acciones">
+        <span class="medidas" id="medidas"></span>
+        <button type="button" class="secundario" id="btnCopiarImagen">Copiar imagen</button>
+        <button type="button" class="secundario" id="btnTodos">Descargar los 3 formatos</button>
+        <span data-if="template!=overlay"><button type="button" class="secundario" id="btnVideo" data-if="animate=true">Descargar vídeo</button></span>
+        <button type="button" class="descargar" id="btnDescargar" title="Atajo: ⌘S / Ctrl+S">Descargar PNG</button>
+        <span class="aviso" id="aviso" role="status"></span>
+      </div>
+    </section>
+  </main>
+
+  <script src="mp4.js"></script>
+  <script src="estudio.js"></script>
+</body>
+</html>
