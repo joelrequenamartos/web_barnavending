@@ -47,7 +47,11 @@
 .footer-links a:hover { color: var(--accent); }
 
 .footer-copy {
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .9rem 2rem;
   color: var(--muted);
   font-size: .75rem;
   letter-spacing: .04em;
@@ -55,4 +59,21 @@
   border-top: 1px solid var(--line);
   max-width: 1140px;
   margin: 0 auto;
+}
+
+.footer-legal {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.footer-legal a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color .2s;
+}
+.footer-legal a:hover { color: var(--accent); }
+
+@media (max-width: 600px) {
+  .footer-copy { flex-direction: column-reverse; text-align: center; }
+  .footer-legal { justify-content: center; gap: .6rem 1.2rem; }
 }

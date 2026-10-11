@@ -112,3 +112,29 @@
   border-radius: var(--radius);
   white-space: nowrap;
 }
+
+/* ── CARRUSEL DE LLEGADAS: páginas de 6 sobres ────── */
+.gallery-carousel .carousel-slide {
+  padding: .5rem;
+}
+
+.gallery-carousel .gallery-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 768px) {
+  .gallery-carousel .carousel-btn { display: none; }
+
+  .gallery-carousel .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: .9rem;
+  }
+
+  .gallery-carousel .gallery-caption {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: .8rem .9rem;
+  }
+
+  .gallery-carousel .gallery-title { font-size: .84rem; }
+}

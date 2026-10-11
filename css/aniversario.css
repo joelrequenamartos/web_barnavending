@@ -1,0 +1,201 @@
+/* ── 30 ANIVERSARIO: bloque destacado en amarillo Pikachu ── */
+.aniversario {
+  --ani-ink:  #1A1405;
+  --ani-ink2: rgba(26, 20, 5, .72);
+  position: relative;
+  overflow: hidden;
+  padding: 7rem 2rem;
+  color: var(--ani-ink);
+  background:
+    radial-gradient(circle at 78% 40%, rgba(255,255,255,.55) 0%, transparent 42%),
+    repeating-conic-gradient(from 0deg at 78% 40%, rgba(255,255,255,.10) 0deg 6deg, transparent 6deg 12deg),
+    linear-gradient(135deg, #FFE45C 0%, #FFD21F 45%, #FFB800 100%);
+}
+
+/* "30" gigante de fondo */
+.aniversario-bg-num {
+  position: absolute;
+  left: -2rem;
+  bottom: -6rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(16rem, 34vw, 30rem);
+  line-height: 1;
+  letter-spacing: -.06em;
+  color: rgba(26, 20, 5, .06);
+  pointer-events: none;
+  user-select: none;
+}
+
+.aniversario-inner {
+  position: relative;
+  max-width: 1140px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.aniversario-badge {
+  display: inline-block;
+  padding: .45rem 1rem;
+  background: var(--ani-ink);
+  color: #FFD21F;
+  border-radius: var(--radius);
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  margin-bottom: 1.4rem;
+}
+
+.aniversario-title {
+  font-size: clamp(2.6rem, 6vw, 4.4rem);
+  font-weight: 700;
+  letter-spacing: -.04em;
+  line-height: 1;
+  color: var(--ani-ink);
+}
+.aniversario-title span {
+  display: block;
+  background: linear-gradient(135deg, #C2410C 0%, #E53935 60%, #9F1239 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.aniversario-sub {
+  margin-top: .9rem;
+  font-family: var(--font-display);
+  font-size: .85rem;
+  font-weight: 600;
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  color: var(--ani-ink2);
+}
+
+.aniversario-desc {
+  margin-top: 1.4rem;
+  max-width: 34rem;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ani-ink2);
+}
+
+.aniversario-stats {
+  list-style: none;
+  display: flex;
+  gap: 2.2rem;
+  flex-wrap: wrap;
+  margin: 2rem 0 2.4rem;
+  padding: 1.4rem 0 0;
+  border-top: 1px solid rgba(26, 20, 5, .18);
+}
+.aniversario-stats li {
+  display: flex;
+  flex-direction: column;
+  gap: .2rem;
+}
+.aniversario-stats strong {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -.03em;
+  line-height: 1;
+}
+.aniversario-stats span {
+  font-size: .78rem;
+  font-weight: 500;
+  letter-spacing: .04em;
+  color: var(--ani-ink2);
+}
+
+.aniversario-btn {
+  position: relative;
+  display: inline-block;
+  padding: .95rem 2.4rem;
+  background: var(--ani-ink);
+  color: #FFE45C;
+  font-weight: 600;
+  font-size: .9rem;
+  letter-spacing: .04em;
+  border-radius: var(--radius);
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform .2s, box-shadow .2s;
+}
+.aniversario-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(26, 20, 5, .3);
+}
+.aniversario-btn::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -60%;
+  width: 40%; height: 100%;
+  background: linear-gradient(115deg, transparent, rgba(255,255,255,.35), transparent);
+  transform: skewX(-20deg);
+  transition: left .55s cubic-bezier(.4,0,.2,1);
+  pointer-events: none;
+}
+.aniversario-btn:hover::after { left: 130%; }
+
+/* caja detrás, sobre delante flotando */
+.aniversario-visual {
+  position: relative;
+  min-height: 460px;
+}
+.aniversario-caja {
+  display: block;
+  width: 82%;
+  margin-left: auto;
+  filter: drop-shadow(0 30px 40px rgba(120, 70, 0, .35));
+}
+.aniversario-sobre {
+  position: absolute;
+  left: 0;
+  bottom: -4%;
+  width: 36%;
+  transform: rotate(-9deg);
+  filter: drop-shadow(0 24px 30px rgba(80, 40, 0, .45));
+  animation: aniversario-float 5s ease-in-out infinite;
+}
+
+@keyframes aniversario-float {
+  0%, 100% { transform: rotate(-9deg) translateY(0); }
+  50%      { transform: rotate(-7deg) translateY(-14px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aniversario-sobre { animation: none; }
+}
+
+@media (max-width: 900px) {
+  .aniversario-inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .aniversario-visual {
+    order: -1;
+    min-height: 0;
+    max-width: 420px;
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .aniversario { padding: 3.25rem 1.25rem; }
+  .aniversario-inner { gap: 1.5rem; }
+  .aniversario-visual { max-width: 210px; }
+  .aniversario-bg-num { font-size: 13rem; bottom: -3rem; }
+  .aniversario-badge { font-size: .62rem; padding: .38rem .85rem; margin-bottom: .9rem; }
+  .aniversario-badge-extra { display: none; }
+  .aniversario-title { font-size: 2.1rem; }
+  .aniversario-sub { margin-top: .6rem; font-size: .72rem; }
+  .aniversario-desc { margin-top: .9rem; font-size: .88rem; line-height: 1.6; }
+  .aniversario-stats { gap: 1.2rem; margin: 1.2rem 0 1.4rem; padding-top: 1rem; }
+  .aniversario-stats strong { font-size: 1.35rem; }
+  .aniversario-stats span { font-size: .7rem; }
+  .aniversario-btn { display: block; text-align: center; padding: .85rem 1.5rem; }
+}

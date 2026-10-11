@@ -48,7 +48,7 @@
   display: flex;
   align-items: center;
   gap: 1.25rem;
-  max-width: 1000px;
+  max-width: 1140px;
   margin: 0 auto;
 }
 
@@ -74,4 +74,63 @@
   font-weight: 600;
   color: var(--text);
   margin-bottom: 1rem;
+}
+
+/* ── MAPA + FOTO DE LA MÁQUINA ────────────────────── */
+.map-slide-body {
+  display: grid;
+  grid-template-columns: 1fr 330px;
+  gap: 1.25rem;
+  align-items: stretch;
+}
+.map-slide-body .map-wrap { max-width: none; margin: 0; }
+
+.map-photo {
+  position: relative;
+  height: 440px;
+  margin: 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--card-bg);
+}
+.map-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .5s cubic-bezier(.4,0,.2,1);
+}
+.map-photo:hover img { transform: scale(1.04); }
+
+.map-photo figcaption {
+  position: absolute;
+  left: .75rem;
+  bottom: .75rem;
+  padding: .35rem .8rem;
+  background: rgba(9,10,20,.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--accent-line);
+  border-radius: var(--radius);
+  color: var(--accent);
+  font-size: .66rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .map-carousel-wrapper .carousel-btn { display: none; }
+  .map-slide-body { grid-template-columns: 1fr; }
+  .map-photo { height: 380px; }
+  .map-photo figcaption { white-space: nowrap; }
+}
+
+@media (max-width: 600px) {
+  .map-slide-body { grid-template-columns: 1fr 40%; gap: .6rem; }
+  .map-slide-body .map-wrap,
+  .map-photo { height: 240px; }
+  .map-photo figcaption { display: none; }
+  .map-slide-title { font-size: 1rem; margin-bottom: .75rem; }
 }
