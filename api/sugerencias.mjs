@@ -24,13 +24,15 @@ function asunto(nombre) {
   return `SUGERENCIA WEB de: ${limpio} #${partes.month}${partes.day}-${partes.hour}${partes.minute}`;
 }
 
-// Solo aceptamos envíos que vengan de nuestra propia web (o de sus despliegues de prueba / local).
+// Solo aceptamos envíos que vengan de nuestra propia web: el mismo dominio que sirve esta función
+// (sea cual sea), sus despliegues de prueba en Vercel o local.
 function originPermitido(req) {
   const origen = req.headers.origin || req.headers.referer || '';
   let host = '';
   try { host = new URL(origen).hostname; } catch { return false; }
+  const servidor = String(req.headers['x-forwarded-host'] || req.headers.host || '').split(',')[0].trim().split(':')[0];
   return (
-    host === 'tcgbarnavending.com' || host.endsWith('.tcgbarnavending.com') ||
+    (servidor && host === servidor) ||
     host.endsWith('.vercel.app') || host === 'localhost' || host === '127.0.0.1'
   );
 }
