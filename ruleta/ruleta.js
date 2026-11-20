@@ -1,9 +1,10 @@
 // Ruleta de premios para eventos. El premio se elige al pulsar (según la probabilidad de cada uno y sin dar los que se han
 // acabado) y la ruleta gira hasta pararse justo en él. Premios, existencias e historial se guardan en este navegador.
 (function () {
-  // v3 = premios 10 % 30 aniversario / 25 % sobre / 30 % vuelve a tirar / 35 % nada. Al cambiar de versión se
-  // cambian los premios guardados en el navegador, pero se conservan los textos y el historial.
-  const STORE = 'ruleta-premios-v3', OLD_STORES = ['ruleta-premios-v2', 'ruleta-premios'];
+  // v4 = premios 10 % 30 aniversario / 25 % sobre / 30 % vuelve a tirar / 35 % nada, con porciones del tamaño de su
+  // probabilidad. Al cambiar de versión se cambian los premios guardados en el navegador, pero se conservan los
+  // textos y el historial.
+  const STORE = 'ruleta-premios-v4', OLD_STORES = ['ruleta-premios-v3', 'ruleta-premios-v2', 'ruleta-premios'];
   const LOGO = '../imagenes/logo.png';
   // colores de la web: foil dorado, naranja y rojo, y el azul noche de las tarjetas
   const COLORS = ['#F2C14E', '#151830', '#FF8C00', '#1E2246', '#E53935', '#151830', '#D9A441', '#262A55'];
@@ -18,7 +19,7 @@
   const examplePrizes = () => EXAMPLE.map((p, i) => ({ id: newId() + i, color: COLORS[i % COLORS.length], win: true, ...p }));
   const DEFAULTS = {
     eyebrow: 'Evento en SomMultiespai', title: 'Ruleta de premios', sub: 'Gira la ruleta y llévate tu premio',
-    place: 'SomMultiespai', message: 'Enséñale esta pantalla a nuestro equipo 🎉', sizeByOdds: false, sound: true,
+    place: 'SomMultiespai', message: 'Enséñale esta pantalla a nuestro equipo 🎉', sizeByOdds: true, sound: true,
   };
   let state = { ...DEFAULTS, prizes: examplePrizes(), history: [] };
   try {
@@ -27,7 +28,7 @@
     else for (const k of OLD_STORES) {
       const old = JSON.parse(localStorage.getItem(k) || 'null');
       if (!old) continue;
-      const { prizes, ...rest } = old; // los premios de antes no se usan: van los nuevos
+      const { prizes, sizeByOdds, ...rest } = old; // los premios y el tamaño de las porciones de antes no se usan
       state = { ...state, ...rest };
       break;
     }
