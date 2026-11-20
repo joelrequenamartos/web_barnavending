@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <base href="/ruleta/" />
+  <!-- en local (/web_barnavending/ruleta/) la base es la propia carpeta -->
+  <script>if (!location.pathname.startsWith('/ruleta')) document.querySelector('base').href = location.pathname.replace(/[^/]*$/, '');</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Ruleta de premios — TCG Barna Vending</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0A0B16" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M10 50 A40 40 0 0 1 90 50Z' fill='%23E53935'/><path d='M10 50 A40 40 0 0 0 90 50Z' fill='%23fff'/><circle cx='50' cy='50' r='40' fill='none' stroke='%23222' stroke-width='5'/><line x1='10' y1='50' x2='90' y2='50' stroke='%23222' stroke-width='5'/><circle cx='50' cy='50' r='13' fill='%23222'/><circle cx='50' cy='50' r='8' fill='%23fff'/></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="ruleta.css" />
+</head>
+<body>
+
+  <header class="top">
+    <a class="marca" href="https://tcgbarnavending.com/" target="_blank" rel="noopener">
+      <img src="../imagenes/logo.png" alt="" />
+      <span>TCG Barna Vending</span>
+    </a>
+    <span class="lugar">📍 <b id="lugar">SomMultiespai</b></span>
+    <div class="top-botones">
+      <button type="button" class="icono" id="btnSonido" title="Sonido">🔊</button>
+      <button type="button" class="icono" id="btnPantalla" title="Pantalla completa">⛶</button>
+      <button type="button" class="icono" id="btnAjustes" title="Premios y ajustes">⚙️</button>
+    </div>
+  </header>
+
+  <main class="escenario">
+    <!-- LA RULETA -->
+    <section class="ruleta-zona">
+      <div class="ruleta" id="ruleta">
+        <svg class="puntero" id="puntero" viewBox="0 0 60 80" aria-hidden="true">
+          <defs>
+            <linearGradient id="foil" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#FFD700" /><stop offset=".5" stop-color="#FF8C00" /><stop offset="1" stop-color="#FF4444" />
+            </linearGradient>
+          </defs>
+          <path d="M30 78 L6 30 A26 26 0 1 1 54 30 Z" fill="url(#foil)" stroke="#0A0B16" stroke-width="4" stroke-linejoin="round" />
+          <circle cx="30" cy="26" r="9" fill="#0A0B16" />
+        </svg>
+        <canvas id="rueda" aria-label="Ruleta de premios"></canvas>
+        <button type="button" class="centro" id="centro" aria-label="Girar la ruleta"></button>
+      </div>
+    </section>
+
+    <!-- TEXTOS, BOTÓN Y ÚLTIMOS PREMIOS -->
+    <section class="lado">
+      <span class="eyebrow" id="eyebrow">Evento en SomMultiespai</span>
+      <h1 id="titulo"><span class="text-grad">Ruleta de premios</span></h1>
+      <p class="sub" id="sub">Gira la ruleta y llévate tu premio</p>
+      <button type="button" class="btn-girar" id="btnGirar">Girar la ruleta</button>
+      <p class="pista">o pulsa <kbd>espacio</kbd> · toca el centro de la ruleta</p>
+
+      <div class="quedan" id="quedan"></div>
+
+      <div class="historial">
+        <div class="historial-cabecera">
+          <strong>Últimos premios</strong>
+          <span id="giros">0 giros</span>
+        </div>
+        <ol id="historial"></ol>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <span>@tcgbarnavending</span>
+    <span>Barcelona · 24 h</span>
+  </footer>
+
+  <!-- PREMIO -->
+  <div class="premio" id="premio" hidden>
+    <div class="premio-carta" role="dialog" aria-live="assertive" aria-labelledby="premioNombre">
+      <span class="premio-eyebrow" id="premioEyebrow">¡Enhorabuena!</span>
+      <div class="premio-emoji" id="premioEmoji">🎁</div>
+      <h2 id="premioNombre" class="text-grad">Sobre gratis</h2>
+      <p id="premioMensaje">Enséñale esta pantalla a nuestro equipo</p>
+      <button type="button" class="btn-girar" id="btnSeguir">Seguir</button>
+    </div>
+  </div>
+  <canvas class="confeti" id="confeti" aria-hidden="true"></canvas>
+
+  <!-- AJUSTES -->
+  <aside class="ajustes" id="ajustes" hidden>
+    <div class="ajustes-cabecera">
+      <strong>⚙️ Premios y ajustes</strong>
+      <button type="button" class="icono" id="btnCerrarAjustes" title="Cerrar">✕</button>
+    </div>
+    <div class="ajustes-cuerpo">
+      <label class="campo"><span>Etiqueta de arriba</span><input type="text" data-k="eyebrow" maxlength="40" /></label>
+      <label class="campo"><span>Título</span><input type="text" data-k="title" maxlength="40" /></label>
+      <label class="campo"><span>Subtítulo</span><input type="text" data-k="sub" maxlength="80" /></label>
+      <label class="campo"><span>Sitio</span><input type="text" data-k="place" maxlength="40" /></label>
+      <label class="campo"><span>Mensaje al ganar</span><input type="text" data-k="message" maxlength="80" /></label>
+
+      <div class="premios-cabecera">
+        <strong>Premios</strong>
+        <small>Probabilidad: cuanto más alta, más sale · Quedan: vacío = sin límite · si se acaban, desaparecen de la ruleta</small>
+      </div>
+      <div class="premios" id="listaPremios"></div>
+      <button type="button" class="btn-sec" id="btnAnadir">＋ Añadir premio</button>
+
+      <label class="check"><input type="checkbox" data-k="sizeByOdds" /> Porciones del tamaño de su probabilidad</label>
+
+      <div class="ajustes-acciones">
+        <button type="button" class="btn-sec" id="btnBorrarHistorial">Borrar el historial</button>
+        <button type="button" class="btn-sec" id="btnEjemplo">Volver a los premios de ejemplo</button>
+      </div>
+      <p class="nota">Todo se guarda en este navegador. Si el dispositivo se apaga o recargas la página, sigue igual.</p>
+    </div>
+  </aside>
+
+  <script src="ruleta.js?v=3"></script>
+</body>
+</html>
