@@ -1,18 +1,18 @@
 // Ruleta de premios para eventos. El premio se elige al pulsar (según la probabilidad de cada uno y sin dar los que se han
 // acabado) y la ruleta gira hasta pararse justo en él. Premios, existencias e historial se guardan en este navegador.
 (function () {
-  // v7 = premios 5 % sobre 30 aniversario (con la foto del sobre de fondo) / 25 % carta sorpresa / 30 % vuelve a tirar / 40 % nada, repartidos en 20 quesitos iguales, con porciones del tamaño de su
+  // v8 = premios 5 % sobre 30 aniversario (con la foto del sobre de fondo) / 25 % carta sorpresa / 30 % vuelve a tirar / 40 % otra vez será, repartidos en 20 quesitos iguales, con porciones del tamaño de su
   // probabilidad. Al cambiar de versión se cambian los premios guardados en el navegador, pero se conservan los
   // textos y el historial.
-  const STORE = 'ruleta-premios-v7', OLD_STORES = ['ruleta-premios-v6', 'ruleta-premios-v5', 'ruleta-premios-v4', 'ruleta-premios-v3', 'ruleta-premios-v2', 'ruleta-premios'];
+  const STORE = 'ruleta-premios-v8', OLD_STORES = ['ruleta-premios-v7', 'ruleta-premios-v6', 'ruleta-premios-v5', 'ruleta-premios-v4', 'ruleta-premios-v3', 'ruleta-premios-v2', 'ruleta-premios'];
   const LOGO = '../imagenes/logo.png';
   // colores de la web: foil dorado, naranja y rojo, y el azul noche de las tarjetas
   const COLORS = ['#F2C14E', '#151830', '#FF8C00', '#1E2246', '#E53935', '#151830', '#D9A441', '#262A55'];
-  // sobre 100: 5 % sobre 30 aniversario, 25 % carta sorpresa, 30 % vuelve a tirar y 40 % nada.
+  // sobre 100: 5 % sobre 30 aniversario, 25 % carta sorpresa, 30 % vuelve a tirar y 40 % otra vez será.
   // «slices» = en cuántos quesitos se reparte cada premio: 1 + 5 + 6 + 8 = 20 quesitos de 18°, todos del 5 %.
   const EXAMPLE = [
     { emoji: '💎', name: 'Sobre 30 aniversario', weight: 5, slices: 1, left: null, img: '../imagenes/30th/sobre-30th-celebration.webp' },
-    { emoji: '😅', name: 'Nada', weight: 40, slices: 8, left: null, win: false },
+    { emoji: '❌', name: 'Otra vez será', weight: 40, slices: 8, left: null, win: false },
     { emoji: '🃏', name: 'Carta sorpresa', weight: 25, slices: 5, left: null },
     { emoji: '🔁', name: 'Vuelve a tirar', weight: 30, slices: 6, left: null, color: '#E53935' },
   ];
