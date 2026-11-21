@@ -247,6 +247,8 @@ kbd {
 }
 .premio-eyebrow { color: var(--accent); font-size: .78rem; font-weight: 600; letter-spacing: .3em; text-transform: uppercase; }
 .premio-emoji { font-size: clamp(4.5rem, 14vw, 7rem); line-height: 1.15; margin: .4rem 0 .2rem; animation: gira 1.2s ease-out; }
+.premio-emoji.con-foto { line-height: 0; margin: .6rem 0 1rem; }
+.premio-emoji.con-foto img { height: clamp(11rem, 34vh, 17rem); width: auto; filter: drop-shadow(0 0 28px rgba(255, 200, 60, .65)) drop-shadow(0 14px 30px rgba(0,0,0,.6)); }
 .premio h2 { font-size: clamp(2rem, 6vw, 2.8rem); line-height: 1.05; margin-bottom: .7rem; }
 .premio p { color: var(--muted); margin-bottom: 1.4rem; }
 .premio.sin-premio .premio-carta { background: linear-gradient(var(--card-bg), var(--card-bg)) padding-box, linear-gradient(135deg, #3A3F66, #1C2042) border-box; box-shadow: 0 30px 90px rgba(0,0,0,.6); }

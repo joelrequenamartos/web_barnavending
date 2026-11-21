@@ -1,17 +1,17 @@
 // Ruleta de premios para eventos. El premio se elige al pulsar (según la probabilidad de cada uno y sin dar los que se han
 // acabado) y la ruleta gira hasta pararse justo en él. Premios, existencias e historial se guardan en este navegador.
 (function () {
-  // v5 = premios 10 % sobre 30 aniversario / 25 % carta sorpresa / 30 % vuelve a tirar / 35 % nada, con porciones del tamaño de su
+  // v6 = premios 5 % sobre 30 aniversario (con la foto del sobre de fondo) / 25 % carta sorpresa / 30 % vuelve a tirar / 40 % nada, con porciones del tamaño de su
   // probabilidad. Al cambiar de versión se cambian los premios guardados en el navegador, pero se conservan los
   // textos y el historial.
-  const STORE = 'ruleta-premios-v5', OLD_STORES = ['ruleta-premios-v4', 'ruleta-premios-v3', 'ruleta-premios-v2', 'ruleta-premios'];
+  const STORE = 'ruleta-premios-v6', OLD_STORES = ['ruleta-premios-v5', 'ruleta-premios-v4', 'ruleta-premios-v3', 'ruleta-premios-v2', 'ruleta-premios'];
   const LOGO = '../imagenes/logo.png';
   // colores de la web: foil dorado, naranja y rojo, y el azul noche de las tarjetas
   const COLORS = ['#F2C14E', '#151830', '#FF8C00', '#1E2246', '#E53935', '#151830', '#D9A441', '#262A55'];
-  // sobre 100: 10 % sobre 30 aniversario, 25 % carta sorpresa, 30 % vuelve a tirar y 35 % nada
+  // sobre 100: 5 % sobre 30 aniversario, 25 % carta sorpresa, 30 % vuelve a tirar y 40 % nada
   const EXAMPLE = [
-    { emoji: '💎', name: 'Sobre 30 aniversario', weight: 10, left: null },
-    { emoji: '😅', name: 'Nada', weight: 35, left: null, win: false },
+    { emoji: '💎', name: 'Sobre 30 aniversario', weight: 5, left: null, img: '../imagenes/30th/sobre-30th-celebration.webp' },
+    { emoji: '😅', name: 'Nada', weight: 40, left: null, win: false },
     { emoji: '🃏', name: 'Carta sorpresa', weight: 25, left: null },
     { emoji: '🔁', name: 'Vuelve a tirar', weight: 30, left: null },
   ];
@@ -57,6 +57,13 @@
 
   // ── DIBUJO ──
   let size = 0, rot = 0, wheel = null, hub = null, logo = null, segments = [];
+  // fotos de premio (p.img): se cargan una vez y, al llegar, se repinta la ruleta
+  const imgs = {};
+  const photo = src => {
+    if (!src) return null;
+    if (!imgs[src]) { const im = new Image(); im.onload = () => { if (size) paintWheel(); }; im.src = src; imgs[src] = im; }
+    return imgs[src].complete && imgs[src].naturalWidth ? imgs[src] : null;
+  };
   let spin = null; // giro en marcha: { from, to, start, dur, prize, last }
   const lum = hex => { const n = parseInt(hex.slice(1), 16); return (.2126 * (n >> 16) + .7152 * (n >> 8 & 255) + .0722 * (n & 255)) / 255; };
   // porciones (en radianes, empezando en 0) de los premios que quedan
@@ -91,6 +98,19 @@
       g.addColorStop(0, 'rgba(0,0,0,.18)'); g.addColorStop(.7, 'rgba(255,255,255,0)'); g.addColorStop(1, 'rgba(255,255,255,.12)');
       x.fillStyle = g; x.fill();
       const mid = (a0 + a1) / 2, span = a1 - a0, ink = lum(p.color) > .5 ? '#1a0e00' : '#FFFFFF';
+      const im = photo(p.img);
+      if (im) { // la foto llena la porción (de pie, con la parte de arriba hacia el borde) y no lleva texto encima
+        x.save();
+        x.clip();
+        x.translate(c, c); x.rotate(mid + Math.PI / 2);
+        const w = Math.max(2 * R * Math.sin(Math.min(span, Math.PI) / 2) * 1.06, R * .2), h = w * im.naturalHeight / im.naturalWidth;
+        x.drawImage(im, -w / 2, -R * 1.01, w, h);
+        const sh = x.createLinearGradient(0, -R, 0, -R * .2); // un poco de sombra hacia el centro
+        sh.addColorStop(0, 'rgba(0,0,0,0)'); sh.addColorStop(.75, 'rgba(0,0,0,.15)'); sh.addColorStop(1, 'rgba(0,0,0,.55)');
+        x.fillStyle = sh; x.fillRect(-R, -R, R * 2, R);
+        x.restore();
+        return;
+      }
       x.save();
       x.translate(c, c); x.rotate(mid + Math.PI / 2); // aquí «arriba» es hacia el borde y el texto sale derecho al pasar por el puntero
       const es = Math.min(R * .13, R * span * .42);
@@ -110,6 +130,15 @@
     // separadores dorados
     x.strokeStyle = 'rgba(255, 215, 120, .9)'; x.lineWidth = Math.max(2, S * .004);
     segments.forEach(({ a0 }) => { x.beginPath(); x.moveTo(c, c); x.lineTo(c + Math.cos(a0) * R, c + Math.sin(a0) * R); x.stroke(); });
+    // borde dorado brillante alrededor de las porciones con foto (encima de todo para que no lo tapen las de al lado)
+    segments.filter(({ p }) => photo(p.img)).forEach(({ a0, a1 }) => {
+      x.save();
+      x.beginPath(); x.moveTo(c, c); x.arc(c, c, R, a0, a1); x.closePath();
+      x.strokeStyle = '#FFE18A'; x.lineWidth = Math.max(3, S * .008); x.lineJoin = 'round';
+      x.shadowColor = 'rgba(255, 215, 0, .95)'; x.shadowBlur = S * .03;
+      x.stroke();
+      x.restore();
+    });
   }
   // el centro y el aro (quietos): aro foil con bombillas y el logo en medio
   function paintHub() {
@@ -216,7 +245,10 @@
     again = win && isRetry(p);
     $('premio').classList.toggle('sin-premio', !win);
     $('premioEyebrow').textContent = again ? '¡Otra oportunidad!' : win ? '¡Enhorabuena!' : '¡Uy, casi!';
-    $('premioEmoji').textContent = p.emoji || '🎁';
+    const im = photo(p.img);
+    $('premioEmoji').classList.toggle('con-foto', !!im);
+    if (im) { $('premioEmoji').replaceChildren(Object.assign(new Image(), { src: im.src, alt: '' })); }
+    else $('premioEmoji').textContent = p.emoji || '🎁';
     $('premioNombre').textContent = p.name;
     $('premioMensaje').textContent = again ? 'Gira otra vez la ruleta 🍀' : win ? state.message : 'Suerte la próxima vez 💛';
     $('btnSeguir').textContent = again ? 'Girar otra vez' : 'Seguir';
