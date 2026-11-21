@@ -1,22 +1,24 @@
 // Ruleta de premios para eventos. El premio se elige al pulsar (según la probabilidad de cada uno y sin dar los que se han
 // acabado) y la ruleta gira hasta pararse justo en él. Premios, existencias e historial se guardan en este navegador.
 (function () {
-  // v6 = premios 5 % sobre 30 aniversario (con la foto del sobre de fondo) / 25 % carta sorpresa / 30 % vuelve a tirar / 40 % nada, con porciones del tamaño de su
+  // v7 = premios 5 % sobre 30 aniversario (con la foto del sobre de fondo) / 25 % carta sorpresa / 30 % vuelve a tirar / 40 % nada, repartidos en 20 quesitos iguales, con porciones del tamaño de su
   // probabilidad. Al cambiar de versión se cambian los premios guardados en el navegador, pero se conservan los
   // textos y el historial.
-  const STORE = 'ruleta-premios-v6', OLD_STORES = ['ruleta-premios-v5', 'ruleta-premios-v4', 'ruleta-premios-v3', 'ruleta-premios-v2', 'ruleta-premios'];
+  const STORE = 'ruleta-premios-v7', OLD_STORES = ['ruleta-premios-v6', 'ruleta-premios-v5', 'ruleta-premios-v4', 'ruleta-premios-v3', 'ruleta-premios-v2', 'ruleta-premios'];
   const LOGO = '../imagenes/logo.png';
   // colores de la web: foil dorado, naranja y rojo, y el azul noche de las tarjetas
   const COLORS = ['#F2C14E', '#151830', '#FF8C00', '#1E2246', '#E53935', '#151830', '#D9A441', '#262A55'];
-  // sobre 100: 5 % sobre 30 aniversario, 25 % carta sorpresa, 30 % vuelve a tirar y 40 % nada
+  // sobre 100: 5 % sobre 30 aniversario, 25 % carta sorpresa, 30 % vuelve a tirar y 40 % nada.
+  // «slices» = en cuántos quesitos se reparte cada premio: 1 + 5 + 6 + 8 = 20 quesitos de 18°, todos del 5 %.
   const EXAMPLE = [
-    { emoji: '💎', name: 'Sobre 30 aniversario', weight: 5, left: null, img: '../imagenes/30th/sobre-30th-celebration.webp' },
-    { emoji: '😅', name: 'Nada', weight: 40, left: null, win: false },
-    { emoji: '🃏', name: 'Carta sorpresa', weight: 25, left: null },
-    { emoji: '🔁', name: 'Vuelve a tirar', weight: 30, left: null },
+    { emoji: '💎', name: 'Sobre 30 aniversario', weight: 5, slices: 1, left: null, img: '../imagenes/30th/sobre-30th-celebration.webp' },
+    { emoji: '😅', name: 'Nada', weight: 40, slices: 8, left: null, win: false },
+    { emoji: '🃏', name: 'Carta sorpresa', weight: 25, slices: 5, left: null },
+    { emoji: '🔁', name: 'Vuelve a tirar', weight: 30, slices: 6, left: null, color: '#E53935' },
   ];
   const newId = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
   const examplePrizes = () => EXAMPLE.map((p, i) => ({ id: newId() + i, color: COLORS[i % COLORS.length], win: true, ...p }));
+  const nSlices = p => Math.max(1, Math.round(p.slices || 1));
   const DEFAULTS = {
     eyebrow: 'Evento en SomMultiespai', title: 'Ruleta de premios', sub: 'Gira la ruleta y llévate tu premio',
     place: 'SomMultiespai', message: 'Enséñale esta pantalla a nuestro equipo 🎉', sizeByOdds: true, sound: true,
@@ -66,11 +68,42 @@
   };
   let spin = null; // giro en marcha: { from, to, start, dur, prize, last }
   const lum = hex => { const n = parseInt(hex.slice(1), 16); return (.2126 * (n >> 16) + .7152 * (n >> 8 & 255) + .0722 * (n & 255)) / 255; };
-  // porciones (en radianes, empezando en 0) de los premios que quedan
+  // orden de los quesitos: cada premio repartido por toda la rueda y sin dos iguales seguidos (tampoco el último con
+  // el primero). Se elige siempre el premio que va más «atrasado» respecto a su reparto ideal y, si eso lleva a un
+  // callejón sin salida, se prueba el siguiente. Si es imposible (un premio con más de la mitad de los quesitos),
+  // se acepta algún par seguido.
+  function spread(list) {
+    const N = list.reduce((s, p) => s + nSlices(p), 0), left = new Map(list.map(p => [p, nSlices(p)])), out = [];
+    const behind = (p, k) => (k + 1) * nSlices(p) / N - (nSlices(p) - left.get(p));
+    let steps = 0;
+    const dfs = k => {
+      if (k === N) return N === 1 || out[0] !== out[N - 1];
+      if (++steps > 20000) return false;
+      const cands = list.filter(p => left.get(p) > 0 && p !== out[k - 1]).sort((a, b) => behind(b, k) - behind(a, k));
+      for (const p of cands) {
+        out.push(p); left.set(p, left.get(p) - 1);
+        if (dfs(k + 1)) return true;
+        out.pop(); left.set(p, left.get(p) + 1);
+      }
+      return false;
+    };
+    const max = Math.max(0, ...list.map(nSlices));
+    if (list.length > 1 && max * 2 <= N && dfs(0)) return out;
+    // sin solución perfecta: reparto lo más uniforme posible
+    out.length = 0; list.forEach(p => left.set(p, nSlices(p)));
+    for (let k = 0; k < N; k++) {
+      const pool = list.filter(p => left.get(p) > 0), ok = pool.filter(p => p !== out[k - 1]);
+      const best = (ok.length ? ok : pool).reduce((b, p) => (behind(p, k) > behind(b, k) ? p : b));
+      left.set(best, left.get(best) - 1); out.push(best);
+    }
+    return out;
+  }
+  // porciones (en radianes, empezando en 0) de los premios que quedan; un premio con varios quesitos se reparte entre ellos
   function layout() {
-    const list = available(), total = list.reduce((s, p) => s + (state.sizeByOdds ? p.weight : 1), 0);
+    const list = available(), size = p => (state.sizeByOdds ? p.weight : nSlices(p)) / nSlices(p);
+    const order = spread(list), total = order.reduce((s, p) => s + size(p), 0);
     let a = 0;
-    segments = list.map(p => { const span = (state.sizeByOdds ? p.weight : 1) / total * Math.PI * 2, s = { p, a0: a, a1: a + span }; a += span; return s; });
+    segments = order.map(p => { const span = size(p) / total * Math.PI * 2, s = { p, a0: a, a1: a + span }; a += span; return s; });
   }
   function wrapText(c, text, maxW) {
     const words = text.split(/\s+/), lines = [];
@@ -209,7 +242,8 @@
   function start() {
     if (spin || !$('premio').hidden || !segments.length) return;
     ac();
-    const prize = pick(segments.map(s => s.p)), seg = segments.find(s => s.p === prize);
+    const prize = pick([...new Set(segments.map(s => s.p))]), mine = segments.filter(s => s.p === prize);
+    const seg = mine[Math.floor(Math.random() * mine.length)]; // uno de sus quesitos al azar
     const a = seg.a0 + (seg.a1 - seg.a0) * (.15 + Math.random() * .7); // un punto al azar dentro de su porción (sin rozar el borde)
     const base = -Math.PI / 2 - a, turns = 6 + Math.floor(Math.random() * 3);
     const to = base + Math.PI * 2 * Math.ceil((rot + turns * Math.PI * 2 - base) / (Math.PI * 2));
@@ -339,6 +373,7 @@
         <input type="color" data-f="color" value="${p.color}" aria-label="Color" />
         <label>Prob.<input type="number" data-f="weight" min="1" max="100" value="${p.weight}" /></label>
         <label>Quedan<input type="number" data-f="left" min="0" placeholder="∞" value="${p.left ?? ''}" /></label>
+        <label>Quesitos<input type="number" data-f="slices" min="1" max="12" value="${nSlices(p)}" /></label>
         <button type="button" class="borrar" data-borrar title="Quitar">✕</button>
         <div class="info">
           <label><input type="checkbox" data-f="win" ${p.win !== false ? 'checked' : ''} /> Es premio <small>(si no, sale «¡Uy, casi!»)</small></label>
@@ -359,6 +394,7 @@
     if (!p || !f) return;
     if (f === 'weight') p.weight = Math.max(1, Math.round(Number(e.target.value) || 1));
     else if (f === 'left') p.left = e.target.value === '' ? null : Math.max(0, Math.round(Number(e.target.value)));
+    else if (f === 'slices') p.slices = Math.min(12, Math.max(1, Math.round(Number(e.target.value) || 1)));
     else if (f === 'win') p.win = e.target.checked;
     else p[f] = e.target.value;
     save(); paintWheel(); refresh();
