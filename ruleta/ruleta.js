@@ -1,18 +1,18 @@
 // Ruleta de premios para eventos. El premio se elige al pulsar (según la probabilidad de cada uno y sin dar los que se han
 // acabado) y la ruleta gira hasta pararse justo en él. Premios, existencias e historial se guardan en este navegador.
 (function () {
-  // v4 = premios 10 % 30 aniversario / 25 % sobre / 30 % vuelve a tirar / 35 % nada, con porciones del tamaño de su
+  // v5 = premios 10 % sobre 30 aniversario / 25 % carta sorpresa / 30 % vuelve a tirar / 35 % nada, con porciones del tamaño de su
   // probabilidad. Al cambiar de versión se cambian los premios guardados en el navegador, pero se conservan los
   // textos y el historial.
-  const STORE = 'ruleta-premios-v4', OLD_STORES = ['ruleta-premios-v3', 'ruleta-premios-v2', 'ruleta-premios'];
+  const STORE = 'ruleta-premios-v5', OLD_STORES = ['ruleta-premios-v4', 'ruleta-premios-v3', 'ruleta-premios-v2', 'ruleta-premios'];
   const LOGO = '../imagenes/logo.png';
   // colores de la web: foil dorado, naranja y rojo, y el azul noche de las tarjetas
   const COLORS = ['#F2C14E', '#151830', '#FF8C00', '#1E2246', '#E53935', '#151830', '#D9A441', '#262A55'];
-  // sobre 100: 10 % sobre 30 aniversario, 25 % sobre normal, 30 % vuelve a tirar y 35 % nada
+  // sobre 100: 10 % sobre 30 aniversario, 25 % carta sorpresa, 30 % vuelve a tirar y 35 % nada
   const EXAMPLE = [
     { emoji: '💎', name: 'Sobre 30 aniversario', weight: 10, left: null },
     { emoji: '😅', name: 'Nada', weight: 35, left: null, win: false },
-    { emoji: '🎁', name: 'Sobre', weight: 25, left: null },
+    { emoji: '🃏', name: 'Carta sorpresa', weight: 25, left: null },
     { emoji: '🔁', name: 'Vuelve a tirar', weight: 30, left: null },
   ];
   const newId = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
