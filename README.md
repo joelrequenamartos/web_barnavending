@@ -14,6 +14,16 @@ robots.txt      SEO
 sitemap.xml     SEO
 ```
 
+## Tienda online
+
+`tienda.html` es la tienda con envío a casa. No cobra en la web: el cliente manda el pedido, llega un correo a tcgbarnavending@gmail.com (función `api/pedido.mjs`, con Resend, igual que las sugerencias) y se le contesta con el total y el pago por Bizum o transferencia.
+
+- **Catálogo:** `datos/productos.json`, sacado del Excel de pedidos (pestaña «Mr Nono»; PVP por sobre de las pestañas Resumen y Stock; caja = sobres × PVP − 10 %). Cada colección (`grupo`) tiene variantes `sobre`, `caja` o `bundle`, cada una con `precio`, `sobres`, `foto`, `disponible` y `mrnono` (id del producto en mrnonohobbies.com).
+- **Envío y mínimo:** `envio` (`precio` por debajo de `gratisDesde`, gratis a partir de ahí) y `minimoSobres` / `minimoSobresAniversario`. La función recalcula precios, envío y mínimo con este mismo archivo, así que no se pueden manipular desde el navegador. `vercel.json` lo incluye en la función.
+- **Disponibilidad diaria:** `.github/workflows/disponibilidad.yml` ejecuta cada mañana `scripts/actualizar-disponibilidad.mjs`, que marca como agotado lo que Mr Nono tiene «Fuera de stock» (y vuelve a activar lo que vuelve a haber). No necesita contraseña. Para probarlo sin guardar: `node scripts/actualizar-disponibilidad.mjs --prueba`.
+- **Fotos de cajas:** `imagenes/cajas/` (960×720, fondo blanco).
+- **Textos legales:** `condiciones-venta.html` (envío, pedido mínimo, desistimiento de 14 días y formulario). Hay datos del titular pendientes marcados en rojo.
+
 ## Desarrollo
 
 No hay build ni dependencias: es HTML/CSS/JS plano. Abre `index.html` en el navegador o sirve la carpeta con cualquier servidor estático:

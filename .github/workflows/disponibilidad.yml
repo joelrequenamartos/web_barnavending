@@ -1,0 +1,39 @@
+# Cada mañana mira el stock de Mr Nono y marca en la tienda lo que está agotado (o vuelve a haber).
+# Si cambia algo, guarda datos/productos.json en main y Vercel publica la web sola.
+# También se puede lanzar a mano: pestaña Actions → «Disponibilidad Mr Nono» → Run workflow.
+name: Disponibilidad Mr Nono
+
+on:
+  schedule:
+    - cron: '0 6 * * *'   # 06:00 UTC = 7:00 en invierno / 8:00 en verano (hora de Barcelona)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: disponibilidad
+  cancel-in-progress: false
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Leer el stock de Mr Nono
+        run: node scripts/actualizar-disponibilidad.mjs
+      - name: Guardar si ha cambiado algo
+        run: |
+          if git diff --quiet -- datos/productos.json; then
+            echo "Sin cambios."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add datos/productos.json
+          git commit -m "Tienda: disponibilidad según Mr Nono ($(date -u +%Y-%m-%d))"
+          git push

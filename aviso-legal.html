@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aviso legal — TCG Barna Vending</title>
   <meta name="description" content="Información sobre el titular de esta web y las condiciones de uso." />
-  <!-- noindex mientras la página esté oculta; cámbialo a "index, follow" al publicarla -->
-  <meta name="robots" content="noindex, follow" />
+  <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#0A0B16" />
   <link rel="canonical" href="https://tcgbarnavending.com/aviso-legal.html" />
 
@@ -22,6 +21,7 @@
   <link rel="stylesheet" href="css/footer.css" />
   <link rel="stylesheet" href="css/responsive.css" />
   <link rel="stylesheet" href="css/legal.css" />
+  <link rel="stylesheet" href="css/cookies.css" />
 </head>
 <body>
 
@@ -35,25 +35,29 @@
       <li><a href="index.html#inicio">Inicio</a></li>
       <li><a href="index.html#productos">Productos</a></li>
       <li><a href="index.html#llegadas">Novedades</a></li>
-      <li><a href="index.html#maquinas">Máquinas</a></li>
       <li><a href="index.html#ubicaciones">Dónde estamos</a></li>
+      <li><a href="index.html#maquinas">Máquinas</a></li>
+      <li><a href="tienda.html" class="nav-tienda">Tienda</a></li>
     </ul>
     <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">&#9776;</button>
   </nav>
 
   <!-- CONTENIDO LEGAL -->
   <main class="legal">
+    <a href="index.html" class="legal-back">&larr; Volver a la web</a>
+
     <header class="legal-header">
       <span class="legal-eyebrow">Información legal</span>
       <h1>Aviso legal</h1>
       <p>Información sobre el titular de esta web y las condiciones de uso.</p>
-      <span class="legal-date">Última actualización: 10 de octubre de 2026</span>
+      <span class="legal-date">Última actualización: 18 de noviembre de 2026</span>
     </header>
 
     <nav class="legal-tabs" aria-label="Páginas legales">
       <a href="aviso-legal.html" class="active" aria-current="page">Aviso legal</a>
       <a href="privacidad.html">Política de privacidad</a>
       <a href="cookies.html">Política de cookies</a>
+      <a href="condiciones-venta.html">Condiciones de venta</a>
       <a href="devoluciones.html">Devoluciones e incidencias</a>
     </nav>
 
@@ -61,16 +65,17 @@
       <h2>1. Datos del titular</h2>
       <p>En cumplimiento del artículo 10 de la Ley 34/2002, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE), se informa de los datos del titular de este sitio web:</p>
       <ul>
-        <li><strong>Titular:</strong> <span class="legal-pendiente">[Nombre y apellidos o razón social]</span></li>
+        <li><strong>Titular:</strong> <span class="legal-pendiente">[Nombre y apellidos]</span></li>
         <li><strong>Nombre comercial:</strong> TCG Barna Vending</li>
-        <li><strong>NIF / CIF:</strong> <span class="legal-pendiente">[NIF / CIF]</span></li>
+        <li><strong>NIF:</strong> <span class="legal-pendiente">[NIF]</span></li>
         <li><strong>Domicilio:</strong> <span class="legal-pendiente">[Domicilio completo]</span></li>
         <li><strong>Email:</strong> <a href="mailto:tcgbarnavending@gmail.com">tcgbarnavending@gmail.com</a></li>
+        <li><strong>Teléfono / WhatsApp:</strong> <span class="legal-pendiente">[Teléfono / WhatsApp]</span></li>
         <li><strong>Sitio web:</strong> tcgbarnavending.com</li>
       </ul>
 
       <h2>2. Objeto</h2>
-      <p>Esta web informa sobre las máquinas vending de TCG Barna Vending, los productos de trading cards que se pueden encontrar en ellas (Pokémon TCG, One Piece TCG, Dragon Ball SCG y accesorios) y sus ubicaciones. La web es informativa: no se realizan ventas a través de ella.</p>
+      <p>Esta web informa sobre las máquinas vending de TCG Barna Vending, los productos de trading cards que se pueden encontrar en ellas (Pokémon TCG, One Piece TCG, Dragon Ball SCG y accesorios) y sus ubicaciones. Desde la <a href="tienda.html">tienda online</a> también se pueden hacer pedidos con envío a casa, que se rigen por las <a href="condiciones-venta.html">condiciones de venta</a>.</p>
 
       <h2>3. Condiciones de uso</h2>
       <p>El acceso a esta web es gratuito y atribuye la condición de usuario. El usuario se compromete a hacer un uso adecuado de los contenidos y a no utilizarlos para actividades ilícitas o contrarias a la buena fe.</p>
@@ -98,11 +103,6 @@
         <p>Colecciona en cada esquina</p>
       </div>
       <div class="footer-links">
-        <a href="index.html#inicio">Inicio</a>
-        <a href="index.html#productos">Productos</a>
-        <a href="index.html#llegadas">Novedades</a>
-        <a href="index.html#maquinas">Máquinas</a>
-        <a href="index.html#ubicaciones">Dónde estamos</a>
         <a href="index.html#empresas">Empresas</a>
       </div>
     </div>
@@ -112,12 +112,14 @@
         <a href="aviso-legal.html">Aviso legal</a>
         <a href="privacidad.html">Privacidad</a>
         <a href="cookies.html">Cookies</a>
+        <a href="condiciones-venta.html">Condiciones de venta</a>
         <a href="devoluciones.html">Devoluciones</a>
       </nav>
     </div>
   </footer>
 
   <script src="js/navbar.js" defer></script>
+  <script src="js/cookie-consent.js" defer></script>
   <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

@@ -112,3 +112,21 @@
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
+
+/* Con el enlace «Tienda» los enlaces ya no caben en media rejilla: ocupan todo lo que deja la marca.
+   (La columna central de 1fr auto 1fr estaba vacía, así que donde ya cabían se ven igual.) */
+@media (min-width: 769px) {
+  .navbar { grid-template-columns: auto 1fr; }
+  .nav-links { grid-column: 2; }
+  .nav-links a { white-space: nowrap; }
+}
+@media (max-width: 1180px) and (min-width: 769px) {
+  .nav-links { gap: 1.4rem; }
+}
+@media (max-width: 1000px) and (min-width: 769px) {
+  .nav-title { display: none; }
+}
+
+/* enlace a la tienda online: destacado en dorado */
+.nav-links a.nav-tienda { color: var(--accent); }
+.nav-links a.nav-tienda:hover { color: var(--text); }

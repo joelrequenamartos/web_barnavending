@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tienda online — TCG Barna Vending</title>
+  <meta name="description" content="Pide sobres y cajas de Pokémon TCG, One Piece TCG y Dragon Ball SCG en japonés, coreano y español y te los enviamos a casa. Envío gratis desde 30 €." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://tcgbarnavending.com/tienda.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tcgbarnavending.com/tienda.html" />
+  <meta property="og:title" content="Tienda online — TCG Barna Vending" />
+  <meta property="og:description" content="Sobres y cajas de trading cards. Te lo enviamos a casa, envío gratis desde 30 €." />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:image" content="https://tcgbarnavending.com/imagenes/30th/caja-30th-celebration.webp" />
+  <meta name="theme-color" content="#0A0B16" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M10 50 A40 40 0 0 1 90 50Z' fill='%23E53935'/><path d='M10 50 A40 40 0 0 0 90 50Z' fill='%23fff'/><circle cx='50' cy='50' r='40' fill='none' stroke='%23222' stroke-width='5'/><line x1='10' y1='50' x2='90' y2='50' stroke='%23222' stroke-width='5'/><circle cx='50' cy='50' r='13' fill='%23222'/><circle cx='50' cy='50' r='8' fill='%23fff'/></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/hero.css" />
+  <link rel="stylesheet" href="css/sections.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/cookies.css" />
+  <link rel="stylesheet" href="css/sugerencias.css" />
+  <link rel="stylesheet" href="css/tienda.css?v=2" />
+</head>
+<body class="pagina-tienda">
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <span class="nav-logo"><img src="imagenes/logo.png" alt="TCG Barna Vending" /></span>
+      <span class="nav-title">TCG BARNA VENDING</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html#inicio">Inicio</a></li>
+      <li><a href="index.html#productos">Productos</a></li>
+      <li><a href="index.html#llegadas">Novedades</a></li>
+      <li><a href="index.html#ubicaciones">Dónde estamos</a></li>
+      <li><a href="index.html#maquinas">Máquinas</a></li>
+      <li><a href="tienda.html" class="nav-tienda" aria-current="page">Tienda</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">&#9776;</button>
+  </nav>
+
+  <main class="tienda">
+    <!-- CABECERA -->
+    <header class="tienda-hero">
+      <span class="section-eyebrow">Tienda online</span>
+      <h1>Te lo enviamos <span class="text-grad">a casa</span></h1>
+      <p>Sobres sueltos y cajas precintadas en japonés, coreano y español, sin salir de casa.</p>
+      <ul class="tienda-ventajas">
+        <li><span aria-hidden="true">🚚</span> Envío gratis desde 30 €</li>
+        <li><span aria-hidden="true">💬</span> Te confirmamos el pedido por email</li>
+        <li><span aria-hidden="true">↩️</span> 14 días para devolver</li>
+      </ul>
+    </header>
+
+    <!-- Aviso de precios de ejemplo: sale solo si datos/productos.json tiene «aviso» -->
+    <p class="tienda-aviso" id="tiendaAviso" hidden></p>
+
+    <!-- CÓMO FUNCIONA -->
+    <ol class="tienda-pasos" aria-label="Cómo funciona">
+      <li><strong>Elige</strong><span>Añade a la cesta lo que quieras.</span></li>
+      <li><strong>Envía el pedido</strong><span>Con tus datos de envío. Todavía no pagas nada.</span></li>
+      <li><strong>Paga y listo</strong><span>Te escribimos con el total y el pago por Bizum o transferencia, y lo enviamos.</span></li>
+    </ol>
+
+    <!-- FILTROS -->
+    <div class="tienda-filtros" role="group" aria-label="Filtrar por juego">
+      <button type="button" class="tienda-chip is-active" data-juego="todo" aria-pressed="true">Todo</button>
+      <button type="button" class="tienda-chip" data-juego="pokemon" aria-pressed="false">⚡ Pokémon</button>
+      <button type="button" class="tienda-chip" data-juego="onepiece" aria-pressed="false">🏴‍☠️ One Piece</button>
+      <button type="button" class="tienda-chip" data-juego="dragonball" aria-pressed="false">🐉 Dragon Ball</button>
+    </div>
+
+    <!-- CATÁLOGO: lo pinta js/tienda.js a partir de datos/productos.json -->
+    <div id="catalogo" class="tienda-catalogo" aria-live="polite">
+      <p class="tienda-cargando">Cargando productos…</p>
+    </div>
+
+    <p class="tienda-legal-nota">Precios con IVA incluido. Envíos a España peninsular: 5 € en pedidos de menos de 30 € y gratis desde 30 €. Pedido mínimo: 5 sobres (o 3 de 30 Aniversario); una caja cuenta todos sus sobres. Consulta las <a href="condiciones-venta.html">condiciones de venta</a> y la <a href="devoluciones.html">política de devoluciones</a>.</p>
+  </main>
+
+  <!-- BOTÓN FLOTANTE DE LA CESTA -->
+  <button type="button" class="cesta-fab" id="cestaFab" aria-controls="cesta" aria-expanded="false" hidden>
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+    <span>Cesta</span>
+    <span class="cesta-fab-num" id="cestaFabNum">0</span>
+    <span class="cesta-fab-total" id="cestaFabTotal">0,00 €</span>
+  </button>
+
+  <!-- PANEL DE LA CESTA (lista → datos de envío → pedido enviado) -->
+  <div class="cesta-velo" id="cestaVelo" hidden></div>
+  <aside class="cesta" id="cesta" aria-label="Tu cesta" aria-hidden="true" inert>
+    <header class="cesta-cab">
+      <button type="button" class="cesta-atras" id="cestaAtras" aria-label="Volver a la cesta" hidden>&larr;</button>
+      <h2 id="cestaTitulo">Tu cesta</h2>
+      <button type="button" class="cesta-cerrar" id="cestaCerrar" aria-label="Cerrar cesta">&times;</button>
+    </header>
+
+    <!-- Paso 1: la cesta -->
+    <section class="cesta-paso" data-paso="cesta">
+      <ul class="cesta-lineas" id="cestaLineas"></ul>
+      <div class="cesta-vacia" id="cestaVacia">
+        <p>Tu cesta está vacía.</p>
+        <button type="button" class="cesta-link" data-cerrar>Ver productos</button>
+      </div>
+      <div class="cesta-pie" id="cestaPie">
+        <dl class="cesta-resumen">
+          <div><dt>Subtotal</dt><dd id="cestaSubtotal">0,00 €</dd></div>
+          <div><dt>Envío</dt><dd id="cestaEnvio">Gratis</dd></div>
+          <div class="cesta-total"><dt>Total <small>IVA incluido</small></dt><dd id="cestaTotal">0,00 €</dd></div>
+        </dl>
+        <p class="cesta-nota" id="cestaNota" hidden></p>
+        <button type="button" class="btn-primary cesta-continuar" id="cestaContinuar">Continuar con el envío</button>
+        <button type="button" class="cesta-ig" id="cestaIg">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          Prefiero pedirlo por Instagram
+        </button>
+        <p class="cesta-ig-nota" id="cestaIgNota" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <!-- Paso 2: datos de envío -->
+    <section class="cesta-paso" data-paso="envio" hidden>
+      <form class="cesta-form" id="pedidoForm" data-endpoint="/api/pedido" novalidate>
+        <p class="cesta-form-intro">¿A dónde te lo enviamos? Con estos datos te escribimos para confirmar el pedido y el pago.</p>
+        <label class="sug-field"><span>Nombre y apellidos</span><input type="text" name="nombre" autocomplete="name" maxlength="120" required /></label>
+        <div class="cesta-fila">
+          <label class="sug-field"><span>Email</span><input type="email" name="correo" autocomplete="email" maxlength="200" required /></label>
+          <label class="sug-field"><span>Teléfono</span><input type="tel" name="telefono" autocomplete="tel" maxlength="30" inputmode="tel" required /></label>
+        </div>
+        <label class="sug-field"><span>Dirección</span><input type="text" name="direccion" autocomplete="street-address" maxlength="200" placeholder="Calle, número, piso y puerta" required /></label>
+        <div class="cesta-fila cesta-fila-3">
+          <label class="sug-field"><span>Código postal</span><input type="text" name="cp" autocomplete="postal-code" inputmode="numeric" maxlength="5" pattern="\d{5}" required /></label>
+          <label class="sug-field"><span>Ciudad</span><input type="text" name="ciudad" autocomplete="address-level2" maxlength="80" required /></label>
+          <label class="sug-field"><span>Provincia</span><input type="text" name="provincia" autocomplete="address-level1" maxlength="80" required /></label>
+        </div>
+        <label class="sug-field"><span>Notas <em>(opcional)</em></span><textarea name="notas" rows="2" maxlength="1000" placeholder="Horario de entrega, timbre, lo que necesites"></textarea></label>
+        <label class="cesta-acepto" id="aceptoWrap">
+          <input type="checkbox" name="acepto" required />
+          <span>He leído y acepto las <a href="condiciones-venta.html" target="_blank">condiciones de venta</a> y la <a href="privacidad.html" target="_blank">política de privacidad</a>.</span>
+        </label>
+        <input class="sug-hp" type="text" name="web" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        <div class="cesta-form-total"><span>Total con envío</span><strong id="formTotal">0,00 €</strong></div>
+        <p class="sug-status" id="pedidoStatus" role="status" aria-live="polite"></p>
+        <button class="btn-primary cesta-continuar" type="submit">Enviar pedido</button>
+        <p class="cesta-form-nota">Al enviarlo no se te cobra nada. Te escribimos en menos de 24 h para confirmar el pedido y el pago.</p>
+      </form>
+    </section>
+
+    <!-- Paso 3: pedido enviado -->
+    <section class="cesta-paso cesta-hecho" data-paso="hecho" hidden>
+      <div class="sug-bubble cesta-bubble">
+        <strong>¡Pedido enviado!</strong>
+        <span id="hechoNumero"></span>
+      </div>
+      <p id="hechoTexto">Te escribimos en menos de 24 horas al correo que nos has dado con el total y los datos para el pago (Bizum o transferencia).</p>
+      <p class="cesta-hecho-sub">Si no lo ves, mira en la carpeta de spam o escríbenos a <a href="mailto:tcgbarnavending@gmail.com">tcgbarnavending@gmail.com</a>.</p>
+      <button type="button" class="cesta-link" data-cerrar>Seguir viendo productos</button>
+    </section>
+  </aside>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span>⚡ TCG Barna Vending</span>
+        <p>Colecciona en cada esquina</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html#empresas">Empresas</a>
+      </div>
+    </div>
+    <div class="footer-copy">
+      <p>&copy; 2026 TCG Barna Vending. Todos los derechos reservados.</p>
+      <nav class="footer-legal" aria-label="Información legal">
+        <a href="aviso-legal.html">Aviso legal</a>
+        <a href="privacidad.html">Privacidad</a>
+        <a href="cookies.html">Cookies</a>
+        <a href="condiciones-venta.html">Condiciones de venta</a>
+        <a href="devoluciones.html">Devoluciones</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="js/navbar.js" defer></script>
+  <script src="js/cookie-consent.js" defer></script>
+  <script src="js/tienda.js?v=2" defer></script>
+  <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
